@@ -27,7 +27,7 @@ const timelineData: TimelineItem[] = [
   },
   {
     id: 3,
-    date: 'feb 09, 2025',
+    date: 'June 07, 2025',
     title: 'First Date',
     description: 'Remember it was just us going for chips and chicken for dinner🤭not planned just decided to go on the last minute⌛i hope you had fun and was happy cause you looked happy🥹i look at those pictures almost everyday,,my baby looked happy🥹❤️and beautiful of course😌more dates and outings are definitely on the way💯lets cherish the moments and show each other how much we appreciate each other❤️.',
     emoji: '🌅'
