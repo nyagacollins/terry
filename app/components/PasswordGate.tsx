@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 // CONFIGURABLE PASSWORD - Change this to your desired password
-const CORRECT_PASSWORD = ' '
+const CORRECT_PASSWORD = 'butterflies'
 
 interface PasswordGateProps {
   onUnlock: () => void
@@ -77,7 +77,7 @@ export default function PasswordGate({ onUnlock }: PasswordGateProps) {
             💖
           </motion.div>
           <h1 className="text-3xl font-bold gradient-text mb-2">
-            Enter the Secret
+            You Know this , Dont over think it.
           </h1>
           <p className="text-gray-500 mb-8">
             This is our special place 💕
@@ -107,7 +107,7 @@ export default function PasswordGate({ onUnlock }: PasswordGateProps) {
                 exit={{ opacity: 0 }}
                 className="text-red-500 text-center font-medium"
               >
-                ❌ Wrong password! Try again.
+                ❌ That's probably right but wrong!😅 .
               </motion.p>
             )}
           </AnimatePresence>
@@ -123,7 +123,7 @@ export default function PasswordGate({ onUnlock }: PasswordGateProps) {
         </form>
 
         <p className="text-center text-gray-400 text-sm mt-6">
-          Hint: Something about how much I love you 💘
+          Hint: Think about the first day we met,What did you feel. 💘
         </p>
       </motion.div>
     </div>

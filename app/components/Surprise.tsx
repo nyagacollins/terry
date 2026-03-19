@@ -106,10 +106,10 @@ export default function Surprise() {
                     className="bg-pink-50 rounded-2xl p-6"
                   >
                     <h4 className="text-xl font-bold text-purple-800 mb-2">
-                      🌴 Bali Beach Trip
+                       🎁 Suprises and gifts
                     </h4>
                     <p className="text-gray-600">
-                      Let's watch the sunset in Bali! I've always dreamed of exploring the beautiful temples and beaches with you.
+                      I can’t wait to keep surprising you on random days just to see that smile I fell in love with😘❤️.
                     </p>
                   </motion.div>
 
@@ -140,6 +140,21 @@ export default function Surprise() {
                       This is just the beginning. I promise to create countless more memories with you, travel to new places, and grow old together.
                     </p>
                   </motion.div>
+                   <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.9 }}
+                    className="bg-rose-50 rounded-2xl p-6"
+                  >
+                    <h4 className="text-xl font-bold text-purple-800 mb-2">
+                      💝 Future Date Promises 
+                    </h4>
+                    <p className="text-gray-600">
+                      I can’t wait to take you on more late-night dates where we just talk about life and laugh for no reason❤️
+I can’t wait for more movie nights where you fall asleep on me and I pretend I’m watching but I’m really watching you🥹
+I promise more surprise dates where you don’t know where we’re going, but you trust me anyway🤗.
+                    </p>
+                  </motion.div>
                 </div>
 
                 <motion.p
@@ -158,3 +173,4 @@ export default function Surprise() {
     </section>
   )
 }
+

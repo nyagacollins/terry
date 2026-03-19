@@ -124,7 +124,7 @@ export default function Home() {
             {/* Footer */}
             <footer className="py-8 bg-gradient-to-r from-pink-400 to-purple-500 text-white text-center">
               <p className="text-lg font-medium">
-                Made with ❤️ for the love of my life
+                Made with ❤️ from CARLOS 🌹💘❤️‍🔥
               </p>
               <p className="text-white/80 mt-2">
                 Happy Anniversary! 💕

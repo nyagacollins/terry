@@ -179,7 +179,7 @@ export default function MusicPlayer() {
           viewport={{ once: true }}
           className="text-center text-gray-500 mt-6"
         >
-          💕 This song reminds me of every moment we've shared together
+          💕 This song reminds me of you everytime i listen to it
         </motion.p>
       </div>
     </section>
