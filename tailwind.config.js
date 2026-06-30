@@ -7,14 +7,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'love-pink': '#ff6b9d',
-        'love-purple': '#9b59b6',
-        'love-rose': '#ffe4e9',
-        'love-dark': '#2d1b4e',
+        'love-lilac': '#c8a8e9',
+        'love-purple': '#9b6dbd',
+        'love-lavender': '#ede7f6',
+        'love-dark': '#3b1f5e',
+        'love-red': '#e05c5c',
+        'love-orange': '#f4845f',
+        'love-pink': '#f7b8c8',
       },
       fontFamily: {
-        'romantic': ['Playfair Display', 'serif'],
+        'romantic': ['Dancing Script', 'cursive'],
         'elegant': ['Quicksand', 'sans-serif'],
+        'serif-elegant': ['Playfair Display', 'serif'],
       },
       animation: {
         'float': 'float 3s ease-in-out infinite',

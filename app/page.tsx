@@ -77,7 +77,7 @@ export default function Home() {
               {[...Array(10)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute text-pink-200"
+                  className="absolute text-violet-200"
                   style={{
                     left: `${Math.random() * 100}%`,
                     fontSize: `${Math.random() * 20 + 10}px`,
@@ -103,7 +103,7 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1 }}
               onClick={toggleMusic}
-              className="fixed top-4 right-4 z-50 w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
+              className="fixed top-4 right-4 z-50 w-12 h-12 bg-gradient-to-r from-violet-500 to-orange-400 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
             >
               <span className="text-white text-xl">
                 {isMusicPlaying ? '🔊' : '🔇'}
@@ -122,12 +122,12 @@ export default function Home() {
             <Future />
 
             {/* Footer */}
-            <footer className="py-8 bg-gradient-to-r from-pink-400 to-purple-500 text-white text-center">
+            <footer className="py-8 bg-gradient-to-r from-violet-500 to-orange-400 text-white text-center">
               <p className="text-lg font-medium">
-                Made with ❤️ from CARLOS 🌹💘❤️‍🔥
+                Made with ❤️ from your Kababa (collins) 🌹💘❤️🔥
               </p>
               <p className="text-white/80 mt-2">
-                Happy Anniversary! 💕
+                Only you, always you 💕
               </p>
             </footer>
           </motion.div>
