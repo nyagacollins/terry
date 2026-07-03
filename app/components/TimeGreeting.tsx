@@ -67,7 +67,7 @@ export default function TimeGreeting() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 60, scale: 0.9 }}
           transition={{ type: 'spring', stiffness: 120, damping: 16 }}
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-sm mx-4"
+          className="fixed bottom-4 left-4 right-4 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-96 z-50"
           style={{ filter: `drop-shadow(0 0 30px ${style.accent}40)` }}
         >
           <div

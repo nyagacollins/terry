@@ -30,11 +30,11 @@ export default function FirstPhotoReveal() {
           className="text-center mb-14"
         >
           <p className="text-purple-400 text-xs tracking-[0.35em] uppercase mb-3">✦ where it all began ✦</p>
-          <h2 className="text-4xl md:text-6xl font-bold gradient-text mb-4"
+          <h2 className="text-3xl md:text-6xl font-bold gradient-text mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             Our First Photo
           </h2>
-          <p className="text-purple-300/70 text-lg">The moment I knew you were everything</p>
+          <p className="text-purple-300/70 text-sm md:text-lg">The moment I knew you were everything</p>
         </motion.div>
 
         <AnimatePresence mode="wait">
@@ -48,7 +48,7 @@ export default function FirstPhotoReveal() {
               className="text-center"
             >
               <motion.div
-                className="glass-card rounded-3xl p-12 mx-auto max-w-sm relative overflow-hidden cursor-pointer"
+                className="glass-card rounded-3xl p-8 md:p-12 mx-auto max-w-sm relative overflow-hidden cursor-pointer"
                 whileHover={{ scale: 1.02 }}
                 onClick={() => setRevealed(true)}
                 style={{ boxShadow: '0 0 60px rgba(155,109,189,0.25)' }}
@@ -116,11 +116,11 @@ export default function FirstPhotoReveal() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
-                  className="absolute bottom-0 left-0 right-0 p-8"
+                  className="absolute bottom-0 left-0 right-0 p-4 md:p-8"
                   style={{ background: 'linear-gradient(to top, rgba(26,5,51,0.95) 0%, rgba(26,5,51,0.6) 60%, transparent 100%)' }}
                 >
                   <p className="text-purple-300/70 text-xs tracking-[0.3em] uppercase mb-2">✦ the beginning ✦</p>
-                  <h3 className="text-white text-3xl md:text-4xl font-bold mb-1"
+                  <h3 className="text-white text-xl md:text-4xl font-bold mb-1"
                     style={{ fontFamily: "'Playfair Display', serif" }}>
                     {HER_NAME}
                   </h3>

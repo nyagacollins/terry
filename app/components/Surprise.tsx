@@ -66,11 +66,11 @@ export default function Surprise() {
           className="text-center mb-14"
         >
           <p className="text-purple-400 text-xs tracking-[0.35em] uppercase mb-3">✦ just for you ✦</p>
-          <h2 className="font-serif-elegant text-4xl md:text-6xl font-bold gradient-text mb-4"
+          <h2 className="text-3xl md:text-6xl font-bold gradient-text mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             A Surprise for You
           </h2>
-          <p className="text-purple-300/70 text-lg">Something special is waiting...</p>
+          <p className="text-purple-300/70 text-sm md:text-lg">Something special is waiting...</p>
         </motion.div>
 
         <AnimatePresence mode="wait">
@@ -85,14 +85,14 @@ export default function Surprise() {
             >
               <motion.button
                 onClick={reveal}
-                className="btn-love text-xl px-14 py-5"
+                className="btn-love text-base md:text-xl px-8 md:px-14 py-4 md:py-5"
                 whileHover={{ scale: 1.06, y: -3 }}
                 whileTap={{ scale: 0.96 }}
               >
                 🎁 Open Your Surprise
               </motion.button>
 
-              <div className="mt-12 flex justify-center gap-5">
+              <div className="mt-8 md:mt-12 flex justify-center gap-3 md:gap-5">
                 {['🎀', '💝', '🎁', '💜', '🎀'].map((e, i) => (
                   <motion.span
                     key={i}
@@ -120,13 +120,13 @@ export default function Surprise() {
                 >
                   ✨🎉✨
                 </motion.div>
-                <h3 className="gradient-text text-3xl font-bold"
+                <h3 className="gradient-text text-2xl md:text-3xl font-bold"
                   style={{ fontFamily: "'Playfair Display', serif" }}>
                   Our Next Adventures Await!
                 </h3>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
                 {surprises.map((s, i) => (
                   <motion.div
                     key={i}

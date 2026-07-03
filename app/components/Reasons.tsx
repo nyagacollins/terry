@@ -47,14 +47,14 @@ export default function Reasons() {
           className="text-center mb-14"
         >
           <p className="text-purple-400 text-xs tracking-[0.35em] uppercase mb-3">✦ let me count the ways ✦</p>
-          <h2 className="font-serif-elegant text-4xl md:text-6xl font-bold gradient-text mb-4"
+          <h2 className="text-3xl md:text-6xl font-bold gradient-text mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             Reasons I Love You
           </h2>
-          <p className="text-purple-300/70 text-lg">Tap each card to reveal a reason 💕</p>
+          <p className="text-purple-300/70 text-sm md:text-lg">Tap each card to reveal a reason 💕</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
           {reasons.map((item, index) => (
             <motion.div
               key={item.id}
@@ -63,7 +63,7 @@ export default function Reasons() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.06, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => toggle(item.id)}
-              className={`flip-card h-52 cursor-pointer ${revealed.includes(item.id) ? 'flipped' : ''}`}
+              className={`flip-card h-44 md:h-52 cursor-pointer ${revealed.includes(item.id) ? 'flipped' : ''}`}
             >
               <div className="flip-card-inner w-full h-full">
                 {/* Front */}
@@ -79,7 +79,7 @@ export default function Reasons() {
                   <motion.span
                     animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
                     transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                    className="text-6xl z-10 mb-3"
+                    className="text-4xl md:text-6xl z-10 mb-2 md:mb-3"
                   >
                     {item.emoji}
                   </motion.span>
@@ -103,7 +103,7 @@ export default function Reasons() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="text-violet-800 text-center font-semibold text-base leading-relaxed"
+                        className="text-violet-800 text-center font-semibold text-sm md:text-base leading-relaxed"
                         style={{ fontFamily: "'Playfair Display', serif" }}
                       >
                         {item.reason}

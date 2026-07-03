@@ -65,7 +65,7 @@ function MilestoneCard({ milestone, index }: { milestone: typeof MILESTONES[0]; 
         style={{ background: `linear-gradient(90deg, transparent, ${milestone.accent}, transparent)` }} />
 
       <div className="relative z-10">
-        <div className="flex items-center gap-3 mb-5">
+        <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-5">
           <motion.span
             animate={{ scale: [1, 1.15, 1], rotate: [0, 10, -10, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: index * 0.5 }}
@@ -73,7 +73,7 @@ function MilestoneCard({ milestone, index }: { milestone: typeof MILESTONES[0]; 
           >
             {milestone.emoji}
           </motion.span>
-          <h3 className="text-purple-100 font-bold text-xl"
+          <h3 className="text-purple-100 font-bold text-base md:text-xl"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             {milestone.label}
           </h3>
@@ -134,14 +134,14 @@ export default function MilestoneCountdown() {
           className="text-center mb-14"
         >
           <p className="text-purple-400 text-xs tracking-[0.35em] uppercase mb-3">✦ things to look forward to ✦</p>
-          <h2 className="text-4xl md:text-6xl font-bold gradient-text mb-4"
+          <h2 className="text-3xl md:text-6xl font-bold gradient-text mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             Next Milestones
           </h2>
-          <p className="text-purple-300/70 text-lg">Counting down to our special moments</p>
+          <p className="text-purple-300/70 text-sm md:text-lg">Counting down to our special moments</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
           {MILESTONES.map((m, i) => (
             <MilestoneCard key={m.label} milestone={m} index={i} />
           ))}

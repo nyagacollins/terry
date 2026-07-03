@@ -108,7 +108,7 @@ export default function PasswordGate({ onUnlock }: PasswordGateProps) {
         <motion.div
           animate={shake ? { x: [-10, 10, -8, 8, -4, 4, 0] } : {}}
           transition={{ duration: 0.5 }}
-          className="glass-card rounded-3xl p-8 md:p-10"
+          className="glass-card rounded-3xl p-6 md:p-10"
         >
           <div className="text-center mb-8">
             <motion.div
@@ -124,7 +124,7 @@ export default function PasswordGate({ onUnlock }: PasswordGateProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="text-4xl text-white mb-3"
+              className="text-3xl md:text-4xl text-white mb-3"
               style={{ fontFamily: "'Dancing Script', cursive" }}
             >
               Just for you...
@@ -152,7 +152,7 @@ export default function PasswordGate({ onUnlock }: PasswordGateProps) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter the magic word..."
-                className={`w-full px-6 py-4 rounded-2xl border-2 bg-white/10 text-white placeholder-purple-300 focus:outline-none focus:ring-4 transition-all duration-300 text-center text-lg tracking-widest backdrop-blur-sm
+                className={`w-full px-4 md:px-6 py-3 md:py-4 rounded-2xl border-2 bg-white/10 text-white placeholder-purple-300 focus:outline-none focus:ring-4 transition-all duration-300 text-center text-base md:text-lg tracking-widest backdrop-blur-sm
                   ${error
                     ? 'border-red-400 focus:border-red-400 focus:ring-red-400/20'
                     : 'border-purple-400/40 focus:border-purple-300 focus:ring-purple-300/20'

@@ -115,12 +115,12 @@ export default function Hero() {
             variants={containerVariants}
             initial="hidden"
             animate="show"
-            className="text-center px-4 relative z-10 max-w-3xl"
+            className="text-center px-6 relative z-10 w-full max-w-3xl"
           >
             {/* Big heart */}
             <motion.div variants={itemVariants}>
               <motion.div
-                className="heartbeat text-8xl md:text-9xl mb-6 inline-block"
+                className="heartbeat text-6xl md:text-9xl mb-4 md:mb-6 inline-block"
                 whileHover={{ scale: 1.2, rotate: [-5, 5, -5, 0] }}
                 transition={{ duration: 0.4 }}
               >
@@ -138,7 +138,7 @@ export default function Hero() {
             {/* Main heading */}
             <motion.h1
               variants={itemVariants}
-              className="font-serif-elegant text-5xl md:text-7xl font-bold mb-3 leading-tight"
+              className="text-4xl sm:text-5xl md:text-7xl font-bold mb-3 leading-tight"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
               <span className="shimmer-text">You&apos;re My Everything</span>
@@ -146,7 +146,7 @@ export default function Hero() {
 
             {/* Sub heading */}
             <motion.p variants={itemVariants}
-              className="text-2xl md:text-3xl mb-3"
+              className="text-xl sm:text-2xl md:text-3xl mb-3 px-2"
               style={{ fontFamily: "'Dancing Script', cursive", color: '#c8a8e9' }}
             >
               This was made just for you, {HER_NAME} 💜
@@ -160,7 +160,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Tagline */}
-            <motion.p variants={itemVariants} className="text-purple-300/80 text-lg md:text-xl mb-10 max-w-md mx-auto leading-relaxed">
+            <motion.p variants={itemVariants} className="text-purple-300/80 text-base md:text-xl mb-8 md:mb-10 max-w-md mx-auto leading-relaxed px-2">
               Every heartbeat, every breath — I choose you, over and over again.
             </motion.p>
 

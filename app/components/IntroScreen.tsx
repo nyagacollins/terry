@@ -88,7 +88,7 @@ export default function IntroScreen({ onDone }: IntroScreenProps) {
 
             {/* Name letter by letter */}
             <div
-              className="text-6xl md:text-8xl font-bold mb-6 leading-tight"
+              className="text-5xl md:text-8xl font-bold mb-4 md:mb-6 leading-tight px-2"
               style={{ fontFamily: "'Playfair Display', serif", minHeight: '1.2em' }}
             >
               {HER_NAME.split('').map((char, i) => (
@@ -100,7 +100,7 @@ export default function IntroScreen({ onDone }: IntroScreenProps) {
                     : { opacity: 0, y: 30, filter: 'blur(8px)' }
                   }
                   transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className={char === ' ' ? 'inline-block w-6' : 'inline-block shimmer-text'}
+                  className={char === ' ' ? 'inline-block w-4 md:w-6' : 'inline-block shimmer-text'}
                 >
                   {char}
                 </motion.span>
@@ -124,7 +124,7 @@ export default function IntroScreen({ onDone }: IntroScreenProps) {
                     💜
                   </motion.div>
                   <p
-                    className="text-purple-300/80 text-xl md:text-2xl italic"
+                    className="text-purple-300/80 text-lg md:text-2xl italic px-4"
                     style={{ fontFamily: "'Dancing Script', cursive" }}
                   >
                     Something special was made just for you...

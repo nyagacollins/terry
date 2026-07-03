@@ -74,14 +74,14 @@ export default function Future() {
           className="text-center mb-14"
         >
           <p className="text-purple-400 text-xs tracking-[0.35em] uppercase mb-3">✦ what awaits us ✦</p>
-          <h2 className="font-serif-elegant text-4xl md:text-6xl font-bold gradient-text mb-4"
+          <h2 className="text-3xl md:text-6xl font-bold gradient-text mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             Our Future Together
           </h2>
-          <p className="text-purple-300/70 text-lg">Promises I&apos;m making to you, always</p>
+          <p className="text-purple-300/70 text-sm md:text-lg">Promises I&apos;m making to you, always</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {promises.map((promise, index) => (
             <motion.div
               key={promise.id}
@@ -120,14 +120,14 @@ export default function Future() {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-14 glass-card rounded-3xl p-8 text-center relative overflow-hidden"
+          className="mt-10 md:mt-14 glass-card rounded-3xl p-5 md:p-8 text-center relative overflow-hidden"
           style={{ boxShadow: '0 0 60px rgba(155,109,189,0.2)' }}
         >
           <div className="absolute inset-0 opacity-10"
             style={{ background: 'linear-gradient(135deg, #9b6dbd, #f4845f)' }} />
           <div className="absolute top-0 left-8 right-8 h-px"
             style={{ background: 'linear-gradient(90deg, transparent, #c8a8e9, #f4845f, #c8a8e9, transparent)' }} />
-          <p className="text-purple-100 text-xl md:text-2xl font-medium italic relative z-10 mb-3"
+          <p className="text-purple-100 text-base md:text-2xl font-medium italic relative z-10 mb-3"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             &quot;Whatever our souls are made of, yours and mine are the same.&quot;
           </p>

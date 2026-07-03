@@ -59,16 +59,16 @@ export default function Counter() {
           className="text-center mb-14"
         >
           <p className="text-purple-400 text-xs tracking-[0.35em] uppercase mb-3">✦ counting every moment ✦</p>
-          <h2 className="font-serif-elegant text-4xl md:text-6xl font-bold gradient-text mb-4"
+          <h2 className="text-3xl md:text-6xl font-bold gradient-text mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             Time We&apos;ve Been Us
           </h2>
-          <p className="text-purple-300/70 text-lg">
+          <p className="text-purple-300/70 text-base md:text-lg">
             Every second is a gift I never take for granted
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
           {units.map((unit, i) => (
             <motion.div
               key={unit.key}
@@ -90,7 +90,7 @@ export default function Counter() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, ease: 'easeOut' }}
-                className="text-5xl md:text-6xl font-bold gradient-text mb-2 tabular-nums leading-none"
+                className="text-4xl md:text-6xl font-bold gradient-text mb-2 tabular-nums leading-none"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 {String(unit.value).padStart(2, '0')}
@@ -110,21 +110,21 @@ export default function Counter() {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="text-center mt-12"
         >
-          <div className="inline-flex items-center gap-3 glass-card rounded-full px-8 py-4">
+          <div className="inline-flex items-center gap-2 md:gap-3 glass-card rounded-full px-4 md:px-8 py-3 md:py-4">
             <motion.span
               animate={{ scale: [1, 1.3, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className="text-2xl"
+              className="text-xl md:text-2xl"
             >
               ❤️
             </motion.span>
-            <span className="text-purple-200 font-medium">
+            <span className="text-purple-200 font-medium text-sm md:text-base text-center">
               And every single second is worth it
             </span>
             <motion.span
               animate={{ scale: [1, 1.3, 1] }}
               transition={{ duration: 1.5, repeat: Infinity, delay: 0.75 }}
-              className="text-2xl"
+              className="text-xl md:text-2xl"
             >
               ❤️
             </motion.span>

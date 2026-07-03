@@ -61,7 +61,7 @@ export default function LoveLetter() {
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="glass-card rounded-3xl p-8 md:p-12 relative overflow-hidden"
+          className="glass-card rounded-3xl p-6 md:p-12 relative overflow-hidden"
           style={{ boxShadow: '0 0 60px rgba(155,109,189,0.2), 0 0 120px rgba(155,109,189,0.05)' }}
         >
           {/* Top border glow */}
@@ -89,7 +89,7 @@ export default function LoveLetter() {
           ) : (
             <div className="mt-6">
               <div
-                className="text-purple-100/90 leading-loose whitespace-pre-wrap text-base md:text-lg"
+                className="text-purple-100/90 leading-loose whitespace-pre-wrap text-sm md:text-lg"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 <span className="typing-cursor">{displayedText}</span>

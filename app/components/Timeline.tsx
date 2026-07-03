@@ -75,11 +75,11 @@ export default function Timeline() {
           className="text-center mb-20"
         >
           <p className="text-purple-400 text-xs tracking-[0.35em] uppercase mb-3">✦ our beautiful journey ✦</p>
-          <h2 className="font-serif-elegant text-4xl md:text-6xl font-bold gradient-text mb-4"
+          <h2 className="text-3xl md:text-6xl font-bold gradient-text mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             Our Love Story
           </h2>
-          <p className="text-purple-300/70 text-lg">Written in the stars, lived in our hearts</p>
+          <p className="text-purple-300/70 text-base md:text-lg">Written in the stars, lived in our hearts</p>
         </motion.div>
 
         {/* Timeline line */}
@@ -93,28 +93,29 @@ export default function Timeline() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.8, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className={`relative flex items-center md:justify-${index % 2 === 0 ? 'start' : 'end'}`}
+              className={`relative flex items-start md:justify-${index % 2 === 0 ? 'start' : 'end'}`}
             >
               {/* Glowing dot */}
               <motion.div
                 whileInView={{ scale: [0, 1.3, 1] }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.08 + 0.3 }}
-                className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-14 h-14 rounded-full flex items-center justify-center text-2xl z-10 shadow-2xl"
+                className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center text-lg md:text-2xl z-10 shadow-2xl flex-shrink-0"
                 style={{
                   background: 'linear-gradient(135deg, #9b6dbd, #f4845f)',
-                  boxShadow: '0 0 20px rgba(200,168,233,0.6), 0 0 40px rgba(200,168,233,0.2)'
+                  boxShadow: '0 0 20px rgba(200,168,233,0.6), 0 0 40px rgba(200,168,233,0.2)',
+                  top: '8px'
                 }}
               >
                 {item.emoji}
               </motion.div>
 
               {/* Card */}
-              <div className={`ml-20 md:ml-0 md:w-[44%] ${index % 2 === 0 ? 'md:mr-auto md:pr-14' : 'md:ml-auto md:pl-14'}`}>
+              <div className={`ml-14 md:ml-0 md:w-[44%] ${index % 2 === 0 ? 'md:mr-auto md:pr-14' : 'md:ml-auto md:pl-14'}`}>
                 <motion.div
-                  whileHover={{ scale: 1.02, y: -4 }}
+                  whileHover={{ scale: 1.01, y: -2 }}
                   transition={{ duration: 0.3 }}
-                  className="glass-card-light rounded-3xl p-6 relative overflow-hidden"
+                  className="glass-card-light rounded-2xl md:rounded-3xl p-4 md:p-6 relative overflow-hidden"
                 >
                   {/* Top accent */}
                   <div className="absolute top-0 left-0 right-0 h-1 rounded-t-3xl"
@@ -123,7 +124,7 @@ export default function Timeline() {
                   <span className="text-orange-500 font-semibold text-xs tracking-wider uppercase">
                     {item.date}
                   </span>
-                  <h3 className="text-xl font-bold text-violet-800 mt-2 mb-3"
+                  <h3 className="text-base md:text-xl font-bold text-violet-800 mt-2 mb-2"
                     style={{ fontFamily: "'Playfair Display', serif" }}>
                     {item.title}
                   </h3>
