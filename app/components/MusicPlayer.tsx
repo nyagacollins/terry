@@ -96,17 +96,17 @@ export default function MusicPlayer() {
           {/* Song Info */}
           <div className="text-center mb-6">
             <h3 className="text-2xl font-bold text-gray-800 mb-1">
-              Birds of a Feather
+              Chai ya saa kumi
             </h3>
             <p className="text-gray-500">
-              Billie Eilish
+              YWAYA TAJIRI
             </p>
           </div>
 
           {/* Audio Element */}
           <audio
             ref={audioRef}
-            src="/music/Billie Eilish - BIRDS OF A FEATHER (Official Music Video) - BillieEilishVEVO.mp3"
+            src="/music/CHAI YA SAA KUMI ( OFFICIAL VIDEO ) -YWAYA TAJIRI - Ywaya Tajiri.mp3"
             onTimeUpdate={handleTimeUpdate}
             onLoadedMetadata={handleLoadedMetadata}
             onEnded={() => setIsPlaying(false)}

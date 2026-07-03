@@ -32,7 +32,22 @@ const photos: Photo[] = [
   { id: 18, src: '/images/WhatsApp Image 2026-07-01 at 01.09.28.jpeg',        caption: 'Just us 💑',                    alt: 'Us together' },
   { id: 19, src: '/images/WhatsApp Image 2026-07-01 at 01.09.29.jpeg',       caption: 'Just us 💑',                    alt: 'Us together' },
   { id: 20, src: '/images/WhatsApp Image 2026-07-01 at 01.09.30.jpeg',       caption: 'Just you 💜',                   alt: 'My love' },
-  { id: 21, src: '',       caption: 'My everything 💕',              alt: 'My love' },
+  { id: 21, src: '/images/WhatsApp Image 2026-07-03 at 21.26.24 (1).jpeg',       caption: 'My everything 💕',              alt: 'My love' },
+   { id: 22, src: '/images/WhatsApp Image 2026-07-03 at 21.26.24 (2).jpeg',       caption: 'My everything 💕',              alt: 'My love' },
+    { id: 23, src: '/images/WhatsApp Image 2026-07-03 at 21.26.24 (3).jpeg',       caption: 'My everything 💕',              alt: 'My love' },
+     { id: 24, src: '/images/WhatsApp Image 2026-07-03 at 21.26.24 (4).jpeg',       caption: 'My everything 💕',              alt: 'My love' },
+      { id: 25, src: '/images/WhatsApp Image 2026-07-03 at 21.26.24.jpeg',       caption: 'My everything 💕',              alt: 'My love' },
+       { id: 26, src: '/images/WhatsApp Image 2026-07-03 at 21.26.25 (1).jpeg',       caption: 'My everything 💕',              alt: 'My love' },
+        { id: 27, src: '/images/WhatsApp Image 2026-07-03 at 21.26.25 (2).jpeg',       caption: 'My everything 💕',              alt: 'My love' },
+         { id: 28, src: '/images/WhatsApp Image 2026-07-03 at 21.26.25 (3).jpeg',       caption: 'My everything 💕',              alt: 'My love' },
+          { id: 29, src: '/images/WhatsApp Image 2026-07-03 at 21.26.25 (4).jpeg',       caption: 'My everything 💕',              alt: 'My love' },
+           { id: 30, src: '/images/WhatsApp Image 2026-07-03 at 21.26.25 (5).jpeg',       caption: 'My everything 💕',              alt: 'My love' },
+            { id: 31, src: '/images/WhatsApp Image 2026-07-03 at 21.26.25.jpeg',       caption: 'My everything 💕',              alt: 'My love' },
+             { id: 32, src: '/images/WhatsApp Image 2026-07-03 at 21.26.26 (1).jpeg',       caption: 'My everything 💕',              alt: 'My love' },
+              { id: 33, src: '/images/WhatsApp Image 2026-07-03 at 21.26.26 (2).jpeg',       caption: 'My everything 💕',              alt: 'My love' },
+               { id: 34, src: '/images/WhatsApp Image 2026-07-03 at 21.26.26 (3).jpeg',       caption: 'My everything 💕',              alt: 'My love' },
+                { id: 35, src: '/images/WhatsApp Image 2026-07-03 at 21.26.26 (4).jpeg',       caption: 'My everything 💕',              alt: 'My love' },
+                 { id: 36, src: '/images/WhatsApp Image 2026-07-03 at 21.26.26.jpeg',       caption: 'My everything 💕',              alt: 'My love' },
 ]
 
 export default function Gallery() {

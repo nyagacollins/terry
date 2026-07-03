@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const HER_NAME = 'Hope Wangare'
+const HER_NAME = 'Hope Wangari 💜'
 
 export default function Hero() {
   const [isPlaying, setIsPlaying] = useState(false)
