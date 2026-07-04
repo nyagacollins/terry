@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 interface Reason {
   id: number
@@ -67,7 +67,7 @@ export default function Reasons() {
             >
               <div className="flip-card-inner w-full h-full">
                 {/* Front */}
-                <div className="flip-card-front absolute w-full h-full rounded-3xl flex flex-col items-center justify-center shadow-2xl overflow-hidden"
+                <div className="flip-card-front rounded-3xl flex flex-col items-center justify-center shadow-2xl overflow-hidden"
                   style={{
                     background: 'linear-gradient(135deg, #3b1f5e, #5c2d91)',
                     border: '1px solid rgba(200,168,233,0.25)',
@@ -76,18 +76,14 @@ export default function Reasons() {
                 >
                   <div className="absolute inset-0 opacity-20"
                     style={{ background: 'radial-gradient(circle at 50% 30%, #c8a8e9, transparent 60%)' }} />
-                  <motion.span
-                    animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                    className="text-4xl md:text-6xl z-10 mb-2 md:mb-3"
-                  >
+                  <span className="text-4xl md:text-6xl z-10 mb-2 md:mb-3 select-none">
                     {item.emoji}
-                  </motion.span>
+                  </span>
                   <span className="text-purple-300/60 text-xs tracking-widest uppercase z-10">tap to reveal</span>
                 </div>
 
                 {/* Back */}
-                <div className="flip-card-back absolute w-full h-full rounded-3xl flex items-center justify-center p-5 overflow-hidden"
+                <div className="flip-card-back rounded-3xl flex items-center justify-center p-5 overflow-hidden"
                   style={{
                     background: 'linear-gradient(135deg, #f9f0ff, #fff0f0)',
                     border: '1px solid rgba(200,168,233,0.4)',
@@ -96,20 +92,12 @@ export default function Reasons() {
                 >
                   <div className="absolute top-0 left-0 right-0 h-1 rounded-t-3xl"
                     style={{ background: 'linear-gradient(90deg, #9b6dbd, #f4845f)' }} />
-                  <AnimatePresence mode="wait">
-                    {revealed.includes(item.id) && (
-                      <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-violet-800 text-center font-semibold text-sm md:text-base leading-relaxed"
-                        style={{ fontFamily: "'Playfair Display', serif" }}
-                      >
-                        {item.reason}
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
+                  <p
+                    className="text-violet-800 text-center font-semibold text-sm md:text-base leading-relaxed"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
+                    {item.reason}
+                  </p>
                 </div>
               </div>
             </motion.div>

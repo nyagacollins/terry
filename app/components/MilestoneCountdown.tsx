@@ -6,7 +6,14 @@ import { motion } from 'framer-motion'
 // CONFIGURABLE — update these dates
 const MILESTONES = [
   {
-    label: 'Her Birthday',
+    label: 'kababa Birthday',
+    emoji: '🎂',
+    date: new Date('2026-11-04T00:00:00'), // Change to her actual birthday
+    color: 'from-violet-600/30 to-purple-800/30',
+    accent: '#c8a8e9',
+  },
+  {
+    label: 'Gummy bear Birthday',
     emoji: '🎂',
     date: new Date('2026-11-08T00:00:00'), // Change to her actual birthday
     color: 'from-violet-600/30 to-purple-800/30',
