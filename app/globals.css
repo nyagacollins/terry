@@ -14,13 +14,33 @@
 
 * { box-sizing: border-box; padding: 0; margin: 0; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
 
 body {
   font-family: 'Quicksand', sans-serif;
   overflow-x: hidden;
+  overflow-y: auto;
   -webkit-text-size-adjust: 100%;
   background: #0e0120;
+  /* Prevent iOS bounce from blocking scroll */
+  position: relative;
+  min-height: 100vh;
+}
+
+/* ── Mobile section spacing ── */
+@media (max-width: 640px) {
+  section {
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+  }
+  /* Ensure nothing clips scroll */
+  section, div {
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 /* ── Scrollbar ── */
@@ -120,6 +140,38 @@ body {
   will-change: transform;
 }
 
+/* ── Reduce motion & mobile perf ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* On mobile: disable expensive blur/backdrop effects */
+@media (max-width: 768px) {
+  .morph-bg {
+    background: #120228;
+    animation: none;
+  }
+  .orb-drift {
+    animation: none;
+  }
+  .float-anim {
+    animation: none;
+  }
+  .glow-card {
+    animation: none;
+  }
+  .shimmer-text {
+    animation: none;
+    background: linear-gradient(135deg, #c8a8e9 0%, #ffffff 50%, #f4845f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
 /* ── Star twinkle ── */
 @keyframes twinkle {
   0%, 100% { opacity: 0.15; transform: scale(0.8); }
@@ -136,17 +188,21 @@ body {
 /* ── Glass card — used sparingly ── */
 .glass-card {
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(200, 168, 233, 0.15);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.06);
 }
 .glass-card-light {
   background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(200, 168, 233, 0.25);
   box-shadow: 0 8px 40px rgba(155, 109, 189, 0.15);
+}
+@supports (backdrop-filter: blur(1px)) {
+  .glass-card-light {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
 }
 
 /* ── Bordered card — modern alternative to glass ── */
@@ -224,7 +280,9 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  backdrop-filter: blur(12px);
+}
+@supports (backdrop-filter: blur(1px)) {
+  .lightbox-overlay { backdrop-filter: blur(8px); }
 }
 
 /* ── Number flip ── */

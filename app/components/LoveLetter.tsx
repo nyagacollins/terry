@@ -68,7 +68,7 @@ export default function LoveLetter() {
           <div className="absolute top-0 left-12 right-12 h-px"
             style={{ background: 'linear-gradient(90deg, transparent, rgba(200,168,233,0.5), rgba(244,132,95,0.5), transparent)' }} />
 
-          <div className="border-card rounded-2xl p-6 md:p-10 relative overflow-hidden"
+          <div className="border-card rounded-2xl p-5 md:p-10 relative overflow-hidden"
             style={{ borderColor: 'rgba(200,168,233,0.15)' }}>
 
             <AnimatePresence mode="wait">

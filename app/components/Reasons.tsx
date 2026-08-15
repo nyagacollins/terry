@@ -56,18 +56,18 @@ export default function Reasons() {
           <p className="text-purple-400/50 text-sm mt-2">Tap each card to reveal a reason</p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
           {reasons.map((item, index) => {
             const flipped = revealed.includes(item.id)
             return (
               <motion.div
                 key={item.id}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.05, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ delay: Math.min(index * 0.04, 0.3), duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                 onClick={() => toggle(item.id)}
-                className="relative h-40 md:h-48 cursor-pointer select-none"
+                className="relative h-36 sm:h-40 md:h-48 cursor-pointer select-none"
                 style={{ perspective: '800px' }}
               >
                 <AnimatePresence initial={false} mode="wait">

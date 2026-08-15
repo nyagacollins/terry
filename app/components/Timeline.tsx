@@ -80,42 +80,42 @@ export default function Timeline() {
           {timelineData.map((item, index) => (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.75, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.6, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
               className={`relative flex items-start md:justify-${index % 2 === 0 ? 'start' : 'end'}`}
             >
               {/* Dot */}
               <motion.div
                 whileInView={{ scale: [0, 1.2, 1] }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: index * 0.07 + 0.25 }}
-                className="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 md:w-11 md:h-11 rounded-full z-10 flex-shrink-0 flex items-center justify-center"
+                transition={{ duration: 0.4, delay: index * 0.06 + 0.2 }}
+                className="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-8 h-8 md:w-11 md:h-11 rounded-full z-10 flex-shrink-0 flex items-center justify-center"
                 style={{
                   background: 'linear-gradient(135deg, #9b6dbd, #f4845f)',
-                  boxShadow: '0 0 16px rgba(200,168,233,0.5)',
+                  boxShadow: '0 0 12px rgba(200,168,233,0.4)',
                   top: '6px'
                 }}
               >
-                <div className="w-2.5 h-2.5 rounded-full bg-white/80" />
+                <div className="w-2 h-2 rounded-full bg-white/80" />
               </motion.div>
 
               {/* Card */}
-              <div className={`ml-12 md:ml-0 md:w-[45%] ${index % 2 === 0 ? 'md:mr-auto md:pr-12' : 'md:ml-auto md:pl-12'}`}>
+              <div className={`ml-11 md:ml-0 md:w-[45%] ${index % 2 === 0 ? 'md:mr-auto md:pr-12' : 'md:ml-auto md:pl-12'}`}>
                 <div className="glass-card-light rounded-2xl p-4 md:p-6 relative overflow-hidden">
                   <div className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl"
                     style={{ background: 'linear-gradient(90deg, #9b6dbd, #f4845f)' }} />
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-[10px] tracking-[0.3em] uppercase font-semibold"
+                  <div className="flex items-center gap-2 mb-2 flex-wrap">
+                    <span className="text-[10px] tracking-[0.25em] uppercase font-semibold"
                       style={{ color: '#f4845f' }}>{item.date}</span>
                     <span className="text-[10px] text-purple-400/50 tracking-wider">· {item.label}</span>
                   </div>
-                  <h3 className="text-base md:text-lg font-bold text-violet-900 mb-2"
+                  <h3 className="text-sm md:text-lg font-bold text-violet-900 mb-2"
                     style={{ fontFamily: "'Playfair Display', serif" }}>
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+                  <p className="text-gray-600 text-xs md:text-sm leading-relaxed">{item.description}</p>
                 </div>
               </div>
             </motion.div>

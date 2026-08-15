@@ -128,7 +128,7 @@ export default function FirstPhotoReveal() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-50 flex items-center justify-center"
-            style={{ background: 'rgba(5,0,15,0.97)', backdropFilter: 'blur(12px)' }}
+            style={{ background: 'rgba(5,0,15,0.97)' }}
             onClick={() => setFullscreen(false)}
           >
             <motion.div

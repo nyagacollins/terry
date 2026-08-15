@@ -58,7 +58,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen" style={{ background: '#0e0120' }}>
+    <main className="min-h-screen relative" style={{ background: '#0e0120' }}>
       <audio
         id="bg-music"
         ref={audioRef}

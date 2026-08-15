@@ -102,10 +102,10 @@ export default function IntroScreen({ onDone }: { onDone: () => void }) {
             style={{ background: 'radial-gradient(circle, #c8a8e9, transparent)' }} />
 
           {/* Main container */}
-          <div className="relative w-full max-w-sm mx-auto flex flex-col items-center px-6" style={{ minHeight: '420px' }}>
+          <div className="relative w-full max-w-sm mx-auto flex flex-col items-center px-6" style={{ minHeight: '380px' }}>
 
             {/* ── BOUQUET ── */}
-            <div className="relative w-64 h-64 md:w-72 md:h-72 mx-auto">
+            <div className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-72 md:h-72 mx-auto">
               {FLOWERS.map(([emoji, x, y, size, delay], i) => (
                 <motion.span
                   key={i}

@@ -67,8 +67,12 @@ export default function TimeGreeting() {
           className="fixed bottom-4 left-4 right-4 md:left-auto md:right-5 md:w-80 z-50"
         >
           <div
-            className="glass-card rounded-2xl px-5 py-4 relative overflow-hidden"
-            style={{ borderColor: `${accent}25` }}
+            className="rounded-2xl px-5 py-4 relative overflow-hidden"
+            style={{
+              background: 'rgba(18, 2, 40, 0.96)',
+              border: `1px solid ${accent}25`,
+              boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+            }}
           >
             <div className="absolute top-0 left-6 right-6 h-px"
               style={{ background: `linear-gradient(90deg, transparent, ${accent}50, transparent)` }} />

@@ -42,11 +42,10 @@ export default function Future() {
           {promises.map((p, i) => (
             <motion.div
               key={p.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.09, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -4 }}
+              transition={{ delay: Math.min(i * 0.08, 0.4), duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
               className="border-card p-5 md:p-6 group"
             >
               <div className="text-3xl mb-4 float-anim inline-block"

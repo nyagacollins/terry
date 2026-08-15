@@ -37,7 +37,6 @@ function Card({ m, index }: { m: typeof MILESTONES[0]; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.12, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -3 }}
       className="border-card p-5 md:p-6 relative overflow-hidden"
     >
       <div className="absolute top-0 left-0 right-0 h-px"

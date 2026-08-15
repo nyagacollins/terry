@@ -34,7 +34,7 @@ export default function Counter() {
   ] as const
 
   return (
-    <section id="counter" className="py-20 md:py-28 section-dark relative overflow-hidden">
+    <section id="counter" className="py-16 md:py-28 section-dark relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-64 opacity-[0.07] blur-3xl"
           style={{ background: 'radial-gradient(ellipse, #c8a8e9, transparent)' }} />

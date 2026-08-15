@@ -31,8 +31,8 @@ export default function Hero() {
     show: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } }
   }
   const item = {
-    hidden: { opacity: 0, y: 32 },
-    show:   { opacity: 1, y: 0, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } }
+    hidden: { opacity: 0, y: 20 },
+    show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
   }
 
   return (
@@ -47,8 +47,8 @@ export default function Hero() {
         }} />
       ))}
 
-      {/* Soft drifting orbs — replaces raining emojis */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* Soft drifting orbs — hidden on mobile for perf */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
         <div className="orb-drift absolute top-[15%] left-[10%] w-[380px] h-[380px] rounded-full opacity-[0.07] blur-[80px]"
           style={{ background: 'radial-gradient(circle, #c8a8e9, transparent)' }} />
         <div className="orb-drift absolute bottom-[20%] right-[8%] w-[300px] h-[300px] rounded-full opacity-[0.06] blur-[70px]"
@@ -75,7 +75,7 @@ export default function Hero() {
 
             {/* Main heading */}
             <motion.h1 variants={item}
-              className="text-[2.6rem] sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] mb-5"
+              className="text-[2.2rem] sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] mb-4"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
               <span className="shimmer-text">You&apos;re My</span>
@@ -85,7 +85,7 @@ export default function Hero() {
 
             {/* Name line */}
             <motion.p variants={item}
-              className="text-lg sm:text-xl md:text-2xl mb-8"
+              className="text-base sm:text-xl md:text-2xl mb-6"
               style={{ fontFamily: "'Dancing Script', cursive", color: 'rgba(200,168,233,0.85)' }}
             >
               Made just for you, {HER_NAME} 💜
@@ -100,7 +100,7 @@ export default function Hero() {
 
             {/* Tagline */}
             <motion.p variants={item}
-              className="text-purple-300/60 text-sm md:text-base mb-10 max-w-xs md:max-w-sm mx-auto leading-relaxed"
+              className="text-purple-300/60 text-sm md:text-base mb-8 max-w-xs mx-auto leading-relaxed"
             >
               Every heartbeat, every breath — I choose you, over and over again.
             </motion.p>

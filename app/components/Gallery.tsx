@@ -21,7 +21,7 @@ const photos = [
   { id: 14, src: '/images/WhatsApp Image 2026-07-01 at 01.09.26.jpeg',    caption: 'Just us' },
   { id: 15, src: '/images/WhatsApp Image 2026-07-01 at 01.09.27.jpeg',    caption: 'Just us' },
   { id: 16, src: '/images/WhatsApp Image 2026-07-01 at 01.09.28.jpeg',    caption: 'Just us' },
-  { id: 17, src: '/images/WhatsApp Image 2026-07-01 at 01.09.29.jpeg',    caption: 'Just us' },
+  { id: 17, src: '/images/WhatsApp Image 2026-07-01 at 01.09.28.jpeg',    caption: 'Just us' },
   { id: 18, src: '/images/WhatsApp Image 2026-07-01 at 01.09.30.jpeg',    caption: 'Just you' },
   { id: 19, src: '/images/WhatsApp Image 2026-07-03 at 21.26.24 (1).jpeg', caption: 'My everything' },
   { id: 20, src: '/images/WhatsApp Image 2026-07-03 at 21.26.24 (2).jpeg', caption: 'My everything' },
@@ -72,14 +72,14 @@ export default function Gallery() {
           <p className="text-purple-400/50 text-sm mt-2">Every moment with you is a treasure</p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1.5 md:gap-3">
           {photos.map((photo, index) => (
             <motion.div
               key={photo.id}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.92 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: Math.min(index * 0.03, 0.5) }}
+              transition={{ duration: 0.4, delay: Math.min(index * 0.02, 0.4) }}
               onClick={() => setSelected(photo)}
               className="cursor-pointer group relative overflow-hidden rounded-xl"
               style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.5)' }}
@@ -115,11 +115,12 @@ export default function Gallery() {
             onClick={() => setSelected(null)}
           >
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.85, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 22 }}
-              className="relative max-w-xl w-full mx-4"
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+              className="relative w-full mx-4"
+              style={{ maxWidth: 'min(90vw, 500px)' }}
               onClick={e => e.stopPropagation()}
             >
               <Image
