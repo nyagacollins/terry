@@ -125,11 +125,16 @@ export default function CatchMyHeart() {
   useEffect(() => {
     const move = (cx: number) => {
       if (!wrapRef.current) return
-      const r  = wrapRef.current.getBoundingClientRect()
+      const r = wrapRef.current.getBoundingClientRect()
       basketRef.current = Math.max(24, Math.min(W.current - 24, cx - r.left))
     }
     const onMouse = (e: MouseEvent) => move(e.clientX)
-    const onTouch = (e: TouchEvent) => { e.preventDefault(); move(e.touches[0].clientX) }
+    const onTouch = (e: TouchEvent) => {
+      // Only hijack touch when the game is actively playing
+      if (stateRef.current !== 'playing') return
+      e.preventDefault()
+      move(e.touches[0].clientX)
+    }
     window.addEventListener('mousemove', onMouse)
     window.addEventListener('touchmove', onTouch, { passive: false })
     return () => {
@@ -419,7 +424,7 @@ export default function CatchMyHeart() {
             background: 'linear-gradient(180deg, #080112 0%, #120228 50%, #1a0840 100%)',
             border: '1px solid rgba(200,168,233,0.1)',
             boxShadow: '0 0 50px rgba(155,109,189,0.1)',
-            touchAction: 'none',
+            touchAction: screen === 'playing' ? 'none' : 'auto',
             userSelect: 'none',
           }}
         >

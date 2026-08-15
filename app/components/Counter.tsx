@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
-const START_DATE = new Date('2025-12-03T00:00:00')
+const START_DATE = new Date('2026-06-14T00:00:00')
 
 export default function Counter() {
   const [time, setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
