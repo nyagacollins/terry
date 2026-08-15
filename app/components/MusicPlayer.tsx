@@ -4,172 +4,117 @@ import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 export default function MusicPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [currentTime, setCurrentTime] = useState(0)
+  const [playing, setPlaying] = useState(false)
+  const [current, setCurrent] = useState(0)
   const [duration, setDuration] = useState(0)
   const audioRef = useRef<HTMLAudioElement>(null)
 
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause()
-      } else {
-        audioRef.current.play()
-      }
-      setIsPlaying(!isPlaying)
-    }
+  const toggle = () => {
+    if (!audioRef.current) return
+    if (playing) { audioRef.current.pause() }
+    else { audioRef.current.play() }
+    setPlaying(!playing)
   }
 
-  const handleTimeUpdate = () => {
-    if (audioRef.current) {
-      setCurrentTime(audioRef.current.currentTime)
-    }
-  }
-
-  const handleLoadedMetadata = () => {
-    if (audioRef.current) {
-      setDuration(audioRef.current.duration)
-    }
-  }
-
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const time = parseFloat(e.target.value)
-    if (audioRef.current) {
-      audioRef.current.currentTime = time
-      setCurrentTime(time)
-    }
-  }
-
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60)
-    const seconds = Math.floor(time % 60)
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`
-  }
+  const fmt = (t: number) => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`
 
   return (
-    <section className="py-20 bg-gradient-to-b from-pink-50 to-purple-50">
-      <div className="max-w-2xl mx-auto px-4">
+    <section className="py-20 md:py-28 section-mid relative overflow-hidden">
+      <div className="max-w-lg mx-auto px-5 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-10"
         >
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
-            Our Song 🎵
+          <p className="text-purple-500/60 text-[10px] tracking-[0.4em] uppercase mb-3 font-medium">our song</p>
+          <h2 className="text-3xl sm:text-4xl font-bold gradient-text"
+            style={{ fontFamily: "'Playfair Display', serif" }}>
+            The Song That&apos;s Us
           </h2>
-          <p className="text-gray-600 text-lg">
-            A melody that reminds me of us
-          </p>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="bg-white rounded-3xl shadow-2xl p-8"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="border-card p-6 md:p-8"
         >
-          {/* Album Art */}
-          <div className="relative w-48 h-48 mx-auto mb-6">
+          {/* Vinyl */}
+          <div className="flex justify-center mb-6">
             <motion.div
-              animate={{ rotate: isPlaying ? 360 : 0 }}
-              transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-              className="w-full h-full rounded-full overflow-hidden border-4 border-pink-200 shadow-lg"
+              animate={{ rotate: playing ? 360 : 0 }}
+              transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+              className="w-28 h-28 md:w-36 md:h-36 rounded-full relative overflow-hidden"
+              style={{
+                background: 'conic-gradient(from 0deg, #2a1050, #3d1a6e, #1a0533, #2a1050)',
+                boxShadow: playing ? '0 0 30px rgba(200,168,233,0.4)' : '0 0 10px rgba(0,0,0,0.5)',
+                border: '3px solid rgba(200,168,233,0.2)',
+                transition: 'box-shadow 0.5s ease',
+              }}
             >
-              <img 
-                src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400&h=400&fit=crop" 
-                alt="Album Art"
-                className="w-full h-full object-cover"
-              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-6 h-6 rounded-full bg-purple-900"
+                  style={{ border: '2px solid rgba(200,168,233,0.4)' }} />
+              </div>
             </motion.div>
-            {isPlaying && (
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="absolute -top-2 -right-2 w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center shadow-lg"
-              >
-                <span className="text-white text-xl">🎵</span>
-              </motion.div>
-            )}
           </div>
 
-          {/* Song Info */}
+          {/* Song info */}
           <div className="text-center mb-6">
-            <h3 className="text-2xl font-bold text-gray-800 mb-1">
+            <h3 className="text-purple-100 font-bold text-lg mb-1"
+              style={{ fontFamily: "'Playfair Display', serif" }}>
               Chai ya saa kumi
             </h3>
-            <p className="text-gray-500">
-              YWAYA TAJIRI
-            </p>
+            <p className="text-purple-400/50 text-sm">Ywaya Tajiri</p>
           </div>
 
-          {/* Audio Element */}
           <audio
             ref={audioRef}
             src="/music/CHAI YA SAA KUMI ( OFFICIAL VIDEO ) -YWAYA TAJIRI - Ywaya Tajiri.mp3"
-            onTimeUpdate={handleTimeUpdate}
-            onLoadedMetadata={handleLoadedMetadata}
-            onEnded={() => setIsPlaying(false)}
+            onTimeUpdate={() => setCurrent(audioRef.current?.currentTime ?? 0)}
+            onLoadedMetadata={() => setDuration(audioRef.current?.duration ?? 0)}
+            onEnded={() => setPlaying(false)}
           />
 
-          {/* Progress Bar */}
-          <div className="mb-4">
+          {/* Progress */}
+          <div className="mb-5">
             <input
               type="range"
               min={0}
               max={duration || 100}
-              value={currentTime}
-              onChange={handleSeek}
-              className="w-full h-2 bg-pink-100 rounded-lg appearance-none cursor-pointer accent-pink-500"
+              value={current}
+              onChange={e => {
+                const t = parseFloat(e.target.value)
+                if (audioRef.current) audioRef.current.currentTime = t
+                setCurrent(t)
+              }}
+              className="player-range w-full mb-1"
             />
-            <div className="flex justify-between text-sm text-gray-500 mt-1">
-              <span>{formatTime(currentTime)}</span>
-              <span>{formatTime(duration)}</span>
+            <div className="flex justify-between text-purple-500/40 text-xs">
+              <span>{fmt(current)}</span>
+              <span>{fmt(duration)}</span>
             </div>
           </div>
 
-          {/* Controls */}
-          <div className="flex items-center justify-center gap-6">
+          {/* Play button */}
+          <div className="flex justify-center">
             <motion.button
-              whileHover={{ scale: 1.1 }}
+              onClick={toggle}
+              whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.95 }}
-              className="text-gray-500 hover:text-pink-500 transition-colors text-2xl"
+              className="w-14 h-14 rounded-full flex items-center justify-center"
+              style={{
+                background: 'linear-gradient(135deg, #9b6dbd, #f4845f)',
+                boxShadow: '0 4px 20px rgba(155,109,189,0.5)',
+              }}
             >
-              ⏮️
-            </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={togglePlay}
-              className="w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
-            >
-              <span className="text-white text-2xl ml-1">
-                {isPlaying ? '⏸️' : '▶️'}
+              <span className="text-white text-xl" style={{ marginLeft: playing ? 0 : '2px' }}>
+                {playing ? '⏸' : '▶'}
               </span>
             </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="text-gray-500 hover:text-pink-500 transition-colors text-2xl"
-            >
-              ⏭️
-            </motion.button>
-          </div>
-
-          {/* Volume Control */}
-          <div className="mt-6 flex items-center justify-center gap-2">
-            <span className="text-gray-400">🔈</span>
-            <input
-              type="range"
-              min={0}
-              max={1}
-              step={0.1}
-              defaultValue={0.7}
-              className="w-24 h-2 bg-pink-100 rounded-lg appearance-none cursor-pointer accent-pink-500"
-            />
-            <span className="text-gray-400">🔊</span>
           </div>
         </motion.div>
 
@@ -177,9 +122,11 @@ export default function MusicPlayer() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center text-gray-500 mt-6"
+          transition={{ delay: 0.4 }}
+          className="text-center text-purple-400/40 mt-6 italic"
+          style={{ fontFamily: "'Dancing Script', cursive", fontSize: '1.05rem' }}
         >
-          💕 This song reminds me of you everytime i listen to it
+          This song reminds me of you every time I listen to it 💜
         </motion.p>
       </div>
     </section>

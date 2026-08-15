@@ -5,159 +5,117 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Confetti from 'react-confetti'
 
 const surprises = [
-  {
-    icon: '🎁',
-    title: 'Surprises & Gifts',
-    body: "I can't wait to keep surprising you on random days just to see that smile I fell in love with 😘❤️.",
-    accent: 'from-violet-900/60 to-purple-900/60'
-  },
-  {
-    icon: '🎂',
-    title: 'Surprise Birthday Dinner',
-    body: "Your next birthday will be extra special! I'm planning something you'll never forget.",
-    accent: 'from-orange-900/60 to-red-900/60'
-  },
-  {
-    icon: '💝',
-    title: 'Many More Adventures',
-    body: "This is just the beginning. I promise to create countless more memories with you, travel to new places, and grow old together.",
-    accent: 'from-purple-900/60 to-violet-900/60'
-  },
-  {
-    icon: '🌙',
-    title: 'Future Date Promises',
-    body: "More late-night dates where we talk about life and laugh for no reason ❤️ More movie nights where you fall asleep on me 🥹 More surprise dates where you trust me completely 🤗.",
-    accent: 'from-red-900/60 to-orange-900/60'
-  },
+  { title: 'Surprises & Gifts',        body: "I can't wait to keep surprising you on random days just to see that smile I fell in love with 😘❤️",                                                                                                                                  emoji: '🎁' },
+  { title: 'Surprise Birthday Dinner', body: "Your next birthday will be extra special! I'm planning something you'll never forget.",                                                                                                                                              emoji: '🎂' },
+  { title: 'Many More Adventures',     body: "This is just the beginning. I promise to create countless more memories with you, travel to new places, and grow old together.",                                                                                                     emoji: '💝' },
+  { title: 'Future Date Promises',     body: "More late-night dates where we talk about life and laugh for no reason ❤️ More movie nights where you fall asleep on me 🥹 More surprise dates where you trust me completely 🤗",                                                   emoji: '🌙' },
 ]
 
 export default function Surprise() {
-  const [isRevealed, setIsRevealed] = useState(false)
-  const [showConfetti, setShowConfetti] = useState(false)
+  const [revealed, setRevealed] = useState(false)
+  const [confetti, setConfetti] = useState(false)
 
   const reveal = () => {
-    setIsRevealed(true)
-    setShowConfetti(true)
-    setTimeout(() => setShowConfetti(false), 6000)
+    setRevealed(true)
+    setConfetti(true)
+    setTimeout(() => setConfetti(false), 6000)
   }
 
   return (
-    <section className="py-24 section-dark relative overflow-hidden">
-      {showConfetti && (
+    <section className="py-20 md:py-28 section-mid relative overflow-hidden">
+      {confetti && (
         <Confetti
-          numberOfPieces={250}
+          numberOfPieces={220}
           recycle={false}
-          gravity={0.18}
+          gravity={0.16}
           colors={['#c8a8e9', '#9b6dbd', '#f4845f', '#e05c5c', '#f7b8c8', '#ffffff']}
         />
       )}
 
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-8 blur-3xl"
-          style={{ background: 'radial-gradient(circle, #9b6dbd, transparent)' }} />
-      </div>
-
-      <div className="max-w-4xl mx-auto px-4 relative z-10">
+      <div className="max-w-4xl mx-auto px-5 relative z-10">
+        {/* Right-aligned header */}
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-14"
+          className="text-right mb-12 md:mb-16"
         >
-          <p className="text-purple-400 text-xs tracking-[0.35em] uppercase mb-3">✦ just for you ✦</p>
-          <h2 className="text-3xl md:text-6xl font-bold gradient-text mb-4"
+          <p className="text-purple-500/60 text-[10px] tracking-[0.4em] uppercase mb-3 font-medium">just for you</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             A Surprise for You
           </h2>
-          <p className="text-purple-300/70 text-sm md:text-lg">Something special is waiting...</p>
+          <p className="text-purple-400/50 text-sm mt-2">Something special is waiting...</p>
         </motion.div>
 
         <AnimatePresence mode="wait">
-          {!isRevealed ? (
+          {!revealed ? (
             <motion.div
               key="btn"
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.5 }}
-              className="text-center"
+              exit={{ opacity: 0, scale: 0.88, y: -10 }}
+              transition={{ duration: 0.45 }}
+              className="text-center py-8"
             >
               <motion.button
                 onClick={reveal}
-                className="btn-love text-base md:text-xl px-8 md:px-14 py-4 md:py-5"
-                whileHover={{ scale: 1.06, y: -3 }}
-                whileTap={{ scale: 0.96 }}
+                className="btn-love text-base md:text-lg px-10 md:px-16 py-4"
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
               >
-                🎁 Open Your Surprise
+                Open Your Surprise 🎁
               </motion.button>
-
-              <div className="mt-8 md:mt-12 flex justify-center gap-3 md:gap-5">
-                {['🎀', '💝', '🎁', '💜', '🎀'].map((e, i) => (
-                  <motion.span
-                    key={i}
-                    className="text-4xl"
-                    animate={{ y: [0, -18, 0], rotate: [0, 10, -10, 0] }}
-                    transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.25, ease: 'easeInOut' }}
-                  >
-                    {e}
-                  </motion.span>
-                ))}
-              </div>
             </motion.div>
           ) : (
             <motion.div
               key="content"
-              initial={{ opacity: 0, scale: 0.85, rotate: -3 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ type: 'spring', stiffness: 120, damping: 14 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="text-center mb-10">
-                <motion.div
-                  animate={{ scale: [1, 1.15, 1], rotate: [0, 5, -5, 0] }}
-                  transition={{ duration: 0.8, repeat: 3 }}
-                  className="text-7xl mb-4"
-                >
-                  ✨🎉✨
-                </motion.div>
-                <h3 className="gradient-text text-2xl md:text-3xl font-bold"
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ type: 'spring', stiffness: 150, damping: 14 }}
+                className="text-center mb-10"
+              >
+                <p className="text-4xl mb-3">🎉</p>
+                <h3 className="gradient-text text-xl md:text-2xl font-bold"
                   style={{ fontFamily: "'Playfair Display', serif" }}>
                   Our Next Adventures Await!
                 </h3>
-              </div>
+              </motion.div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                 {surprises.map((s, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ delay: i * 0.15 + 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className={`glass-card rounded-3xl p-6 relative overflow-hidden`}
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.12 + 0.1, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                    className="border-card p-5 md:p-6"
                   >
-                    <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${s.accent}`} />
-                    <div className="relative z-10">
-                      <div className="text-4xl mb-3">{s.icon}</div>
-                      <h4 className="text-purple-100 font-bold text-lg mb-2"
-                        style={{ fontFamily: "'Playfair Display', serif" }}>
-                        {s.title}
-                      </h4>
-                      <p className="text-purple-300/80 text-sm leading-relaxed">{s.body}</p>
-                    </div>
+                    <div className="text-3xl mb-3">{s.emoji}</div>
+                    <h4 className="text-purple-100 font-bold text-base mb-2"
+                      style={{ fontFamily: "'Playfair Display', serif" }}>
+                      {s.title}
+                    </h4>
+                    <p className="text-purple-400/60 text-sm leading-relaxed">{s.body}</p>
                   </motion.div>
                 ))}
               </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 0.8 }}
-                className="text-center mt-10"
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+                className="text-center mt-10 text-purple-400/50 italic"
+                style={{ fontFamily: "'Dancing Script', cursive", fontSize: '1.3rem' }}
               >
-                <p className="text-2xl" style={{ fontFamily: "'Dancing Script', cursive", color: '#f4845f' }}>
-                  I love you more than words can express! ❤️
-                </p>
-              </motion.div>
+                I love you more than words can express! ❤️
+              </motion.p>
             </motion.div>
           )}
         </AnimatePresence>

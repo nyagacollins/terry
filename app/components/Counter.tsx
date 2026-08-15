@@ -1,32 +1,23 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
-const START_DATE = new Date('2026-06-12T00:00:00')
+const START_DATE = new Date('2025-12-03T00:00:00')
 
 export default function Counter() {
   const [time, setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
   const prevRef = useRef({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-  const [flipped, setFlipped] = useState({ days: false, hours: false, minutes: false, seconds: false })
 
   useEffect(() => {
     const tick = () => {
-      const now = new Date()
-      const diff = now.getTime() - START_DATE.getTime()
+      const diff = Date.now() - START_DATE.getTime()
       const next = {
-        days:    Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours:   Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((diff % (1000 * 60)) / 1000),
+        days:    Math.floor(diff / 86400000),
+        hours:   Math.floor((diff % 86400000) / 3600000),
+        minutes: Math.floor((diff % 3600000) / 60000),
+        seconds: Math.floor((diff % 60000) / 1000),
       }
-      const prev = prevRef.current
-      setFlipped({
-        days:    next.days    !== prev.days,
-        hours:   next.hours   !== prev.hours,
-        minutes: next.minutes !== prev.minutes,
-        seconds: next.seconds !== prev.seconds,
-      })
       prevRef.current = next
       setTime(next)
     }
@@ -36,100 +27,80 @@ export default function Counter() {
   }, [])
 
   const units = [
-    { key: 'days',    value: time.days,    label: 'Days',    icon: '🌙' },
-    { key: 'hours',   value: time.hours,   label: 'Hours',   icon: '☀️' },
-    { key: 'minutes', value: time.minutes, label: 'Minutes', icon: '✨' },
-    { key: 'seconds', value: time.seconds, label: 'Seconds', icon: '💫' },
+    { key: 'days',    value: time.days,    label: 'Days' },
+    { key: 'hours',   value: time.hours,   label: 'Hours' },
+    { key: 'minutes', value: time.minutes, label: 'Min' },
+    { key: 'seconds', value: time.seconds, label: 'Sec' },
   ] as const
 
   return (
-    <section id="counter" className="py-24 section-dark relative overflow-hidden">
-      {/* Background glow */}
+    <section id="counter" className="py-20 md:py-28 section-dark relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] opacity-10 blur-3xl"
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-64 opacity-[0.07] blur-3xl"
           style={{ background: 'radial-gradient(ellipse, #c8a8e9, transparent)' }} />
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 relative z-10">
+      <div className="max-w-4xl mx-auto px-5 relative z-10">
+        {/* Left-aligned header — different from centered pattern */}
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-14"
+          className="mb-12 md:mb-16"
         >
-          <p className="text-purple-400 text-xs tracking-[0.35em] uppercase mb-3">✦ counting every moment ✦</p>
-          <h2 className="text-3xl md:text-6xl font-bold gradient-text mb-4"
+          <p className="text-purple-500/60 text-[10px] tracking-[0.4em] uppercase mb-3 font-medium">
+            counting every moment
+          </p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text leading-tight"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             Time We&apos;ve Been Us
           </h2>
-          <p className="text-purple-300/70 text-base md:text-lg">
-            Every second is a gift I never take for granted
-          </p>
+          <p className="text-purple-400/50 text-sm mt-3">Every second is a gift I never take for granted</p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {units.map((unit, i) => (
             <motion.div
               key={unit.key}
-              initial={{ opacity: 0, y: 40, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.12, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ scale: 1.06, y: -4 }}
-              className="glass-card rounded-3xl p-6 text-center glow-card relative overflow-hidden"
+              transition={{ delay: i * 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="border-card rounded-2xl p-5 md:p-6 text-center relative overflow-hidden group"
             >
-              {/* Inner glow */}
-              <div className="absolute inset-0 rounded-3xl opacity-0 hover:opacity-100 transition-opacity duration-500"
-                style={{ background: 'radial-gradient(circle at 50% 0%, rgba(200,168,233,0.15), transparent 70%)' }} />
-
-              <div className="text-3xl mb-3">{unit.icon}</div>
+              {/* Subtle top accent */}
+              <div className="absolute top-0 left-0 right-0 h-px"
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(200,168,233,0.4), transparent)' }} />
 
               <motion.div
                 key={`${unit.key}-${unit.value}`}
-                initial={{ opacity: 0, y: -20 }}
+                initial={{ opacity: 0, y: -16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, ease: 'easeOut' }}
-                className="text-4xl md:text-6xl font-bold gradient-text mb-2 tabular-nums leading-none"
+                transition={{ duration: 0.3, ease: 'easeOut' }}
+                className="text-4xl sm:text-5xl md:text-6xl font-bold tabular-nums leading-none mb-2 gradient-text"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 {String(unit.value).padStart(2, '0')}
               </motion.div>
 
-              <p className="text-purple-300/80 text-sm font-semibold tracking-widest uppercase">
+              <p className="text-purple-400/50 text-[10px] tracking-[0.35em] uppercase font-semibold">
                 {unit.label}
               </p>
             </motion.div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="text-center mt-12"
+          transition={{ delay: 0.5 }}
+          className="text-purple-400/40 text-sm mt-8 text-center italic"
+          style={{ fontFamily: "'Dancing Script', cursive", fontSize: '1.1rem' }}
         >
-          <div className="inline-flex items-center gap-2 md:gap-3 glass-card rounded-full px-4 md:px-8 py-3 md:py-4">
-            <motion.span
-              animate={{ scale: [1, 1.3, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="text-xl md:text-2xl"
-            >
-              ❤️
-            </motion.span>
-            <span className="text-purple-200 font-medium text-sm md:text-base text-center">
-              And every single second is worth it
-            </span>
-            <motion.span
-              animate={{ scale: [1, 1.3, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity, delay: 0.75 }}
-              className="text-xl md:text-2xl"
-            >
-              ❤️
-            </motion.span>
-          </div>
-        </motion.div>
+          And every single second is worth it 💜
+        </motion.p>
       </div>
     </section>
   )

@@ -12,36 +12,23 @@
   --love-pink: #f7b8c8;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+* { box-sizing: border-box; padding: 0; margin: 0; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Quicksand', sans-serif;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
-  background: #1a0533;
+  background: #0e0120;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #1a0533;
-}
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0e0120; }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(to bottom, #c8a8e9, #f4845f);
   border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #b48fdb, #e05c5c);
 }
 
 /* ── Gradient text ── */
@@ -51,28 +38,24 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
 .gradient-text-warm {
   background: linear-gradient(135deg, #f7b8c8 0%, #f4845f 50%, #e05c5c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
-/* ── Romantic font ── */
-.font-romantic {
-  font-family: 'Dancing Script', cursive;
-}
-.font-serif-elegant {
-  font-family: 'Playfair Display', serif;
+.gradient-text-soft {
+  background: linear-gradient(135deg, #e8d5f5 0%, #c8a8e9 60%, #b48fdb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* ── Shimmer animation ── */
+/* ── Shimmer ── */
 @keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
 }
-
 .shimmer-text {
   background: linear-gradient(90deg, #c8a8e9 0%, #ffffff 40%, #f4845f 60%, #c8a8e9 100%);
   background-size: 200% auto;
@@ -82,50 +65,16 @@ body {
   animation: shimmer 4s linear infinite;
 }
 
-/* ── Glow pulse ── */
-@keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(200, 168, 233, 0.4), 0 0 40px rgba(200, 168, 233, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(200, 168, 233, 0.8), 0 0 80px rgba(244, 132, 95, 0.4); }
-}
-
-.glow-card {
-  animation: glow-pulse 3s ease-in-out infinite;
-}
-
-/* ── Floating petals ── */
-@keyframes petal-fall {
-  0%   { transform: translateY(-10vh) translateX(0px) rotate(0deg); opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 0.6; }
-  100% { transform: translateY(110vh) translateX(80px) rotate(720deg); opacity: 0; }
-}
-
-@keyframes petal-sway {
-  0%, 100% { margin-left: 0px; }
-  25%       { margin-left: 30px; }
-  75%       { margin-left: -30px; }
-}
-
-.petal {
-  position: fixed;
-  pointer-events: none;
-  animation: petal-fall linear infinite, petal-sway ease-in-out infinite;
-  z-index: 1;
-  font-size: 18px;
-  will-change: transform;
-}
-
 /* ── Morphing background ── */
 @keyframes morph-bg {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
 .morph-bg {
-  background: linear-gradient(-45deg, #1a0533, #2d1054, #3b1f5e, #1f0a3d, #2a0f4e);
+  background: linear-gradient(-45deg, #0e0120, #1a0533, #2d1054, #160a2e, #1f0a3d);
   background-size: 400% 400%;
-  animation: morph-bg 12s ease infinite;
+  animation: morph-bg 14s ease infinite;
 }
 
 /* ── Heartbeat ── */
@@ -133,22 +82,17 @@ body {
   0%, 100% { transform: scale(1); }
   14%       { transform: scale(1.15); }
   28%       { transform: scale(1); }
-  42%       { transform: scale(1.1); }
+  42%       { transform: scale(1.08); }
   70%       { transform: scale(1); }
 }
-
-.heartbeat {
-  animation: heartbeat 1.6s ease-in-out infinite;
-}
+.heartbeat { animation: heartbeat 1.8s ease-in-out infinite; }
 
 /* ── Float ── */
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(-2deg); }
-  50%       { transform: translateY(-18px) rotate(2deg); }
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
 }
-.float-anim {
-  animation: float 4s ease-in-out infinite;
-}
+.float-anim { animation: float 5s ease-in-out infinite; }
 
 /* ── Typing cursor ── */
 .typing-cursor::after {
@@ -157,90 +101,29 @@ body {
   color: #c8a8e9;
 }
 @keyframes blink {
-  0%, 50%  { opacity: 1; }
+  0%, 50%   { opacity: 1; }
   51%, 100% { opacity: 0; }
 }
 
-
-
-/* ── Glass card ── */
-.glass-card {
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(200, 168, 233, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+/* ── Petals ── */
+@keyframes petal-fall {
+  0%   { transform: translateY(-10vh) translateX(0px) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.8; }
+  90%  { opacity: 0.4; }
+  100% { transform: translateY(110vh) translateX(60px) rotate(540deg); opacity: 0; }
 }
-
-.glass-card-light {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(200, 168, 233, 0.3);
-  box-shadow: 0 8px 40px rgba(155, 109, 189, 0.2);
-}
-
-/* ── Lightbox ── */
-.lightbox-overlay {
+.petal {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(10, 0, 20, 0.95);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  backdrop-filter: blur(8px);
-}
-
-/* ── Button ── */
-.btn-love {
-  background: linear-gradient(135deg, #9b6dbd, #c8a8e9, #f4845f);
-  background-size: 200% 200%;
-  color: white;
-  padding: 14px 36px;
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0.5px;
-  transition: all 0.4s ease;
-  box-shadow: 0 4px 20px rgba(155, 109, 189, 0.5), 0 0 0 0 rgba(200, 168, 233, 0.4);
-  animation: morph-bg 4s ease infinite;
-}
-.btn-love:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 30px rgba(155, 109, 189, 0.7), 0 0 20px rgba(244, 132, 95, 0.3);
-}
-.btn-love:active {
-  transform: translateY(-1px) scale(0.99);
-}
-
-/* ── Section backgrounds ── */
-.section-dark {
-  background: linear-gradient(180deg, #1a0533 0%, #2d1054 50%, #1a0533 100%);
-}
-.section-gradient {
-  background: linear-gradient(180deg, #2d1054 0%, #3b1f5e 40%, #2a1545 100%);
-}
-
-/* ── Timeline ── */
-.timeline-line {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 3px;
-  height: 100%;
-  background: linear-gradient(to bottom, transparent, #c8a8e9 15%, #f4845f 85%, transparent);
-  border-radius: 2px;
-}
-@media (max-width: 768px) {
-  .timeline-line { left: 20px; }
+  pointer-events: none;
+  animation: petal-fall linear infinite;
+  z-index: 1;
+  will-change: transform;
 }
 
 /* ── Star twinkle ── */
 @keyframes twinkle {
-  0%, 100% { opacity: 0.2; transform: scale(0.8); }
-  50%       { opacity: 1;   transform: scale(1.2); }
+  0%, 100% { opacity: 0.15; transform: scale(0.8); }
+  50%       { opacity: 0.9;  transform: scale(1.3); }
 }
 .star {
   position: fixed;
@@ -250,27 +133,144 @@ body {
   animation: twinkle ease-in-out infinite;
 }
 
-/* ── Reveal underline ── */
-.underline-reveal {
-  position: relative;
-  display: inline-block;
+/* ── Glass card — used sparingly ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(200, 168, 233, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.06);
 }
-.underline-reveal::after {
-  content: '';
-  position: absolute;
-  bottom: -4px; left: 0;
-  width: 0; height: 2px;
-  background: linear-gradient(90deg, #c8a8e9, #f4845f);
-  border-radius: 2px;
-  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+.glass-card-light {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(200, 168, 233, 0.25);
+  box-shadow: 0 8px 40px rgba(155, 109, 189, 0.15);
 }
-.underline-reveal:hover::after { width: 100%; }
 
-/* ── Number flip animation ── */
+/* ── Bordered card — modern alternative to glass ── */
+.border-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(200, 168, 233, 0.12);
+  border-radius: 20px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.border-card:hover {
+  border-color: rgba(200, 168, 233, 0.3);
+  background: rgba(200, 168, 233, 0.05);
+}
+
+/* ── Button ── */
+.btn-love {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #9b6dbd, #c8a8e9, #f4845f);
+  background-size: 200% 200%;
+  color: white;
+  padding: 13px 32px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  transition: all 0.35s ease;
+  box-shadow: 0 4px 24px rgba(155, 109, 189, 0.45);
+  animation: morph-bg 5s ease infinite;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+.btn-love:hover  { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 32px rgba(155, 109, 189, 0.65); }
+.btn-love:active { transform: translateY(0px) scale(0.99); }
+
+/* ── Section backgrounds ── */
+.section-dark {
+  background: linear-gradient(180deg, #0e0120 0%, #1a0533 50%, #0e0120 100%);
+}
+.section-mid {
+  background: linear-gradient(180deg, #1a0533 0%, #2a1050 50%, #1a0533 100%);
+}
+.section-gradient {
+  background: linear-gradient(180deg, #1a0533 0%, #2d1054 40%, #1f0a3d 100%);
+}
+
+/* ── Divider line ── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,168,233,0.3), rgba(244,132,95,0.3), transparent);
+}
+
+/* ── Timeline ── */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(200,168,233,0.4) 15%, rgba(244,132,95,0.4) 85%, transparent);
+}
+@media (max-width: 768px) {
+  .timeline-line { left: 18px; }
+}
+
+/* ── Lightbox ── */
+.lightbox-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(5, 0, 15, 0.97);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+}
+
+/* ── Number flip ── */
 @keyframes number-flip {
   0%   { transform: translateY(-100%); opacity: 0; }
   100% { transform: translateY(0);     opacity: 1; }
 }
-.number-flip {
-  animation: number-flip 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+.number-flip { animation: number-flip 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* ── Glow pulse ── */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(200,168,233,0.2); }
+  50%       { box-shadow: 0 0 40px rgba(200,168,233,0.5), 0 0 80px rgba(244,132,95,0.15); }
+}
+.glow-card { animation: glow-pulse 4s ease-in-out infinite; }
+
+/* ── Soft orb ── */
+@keyframes orb-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, -20px) scale(1.05); }
+  66%       { transform: translate(-20px, 15px) scale(0.97); }
+}
+.orb-drift { animation: orb-drift 18s ease-in-out infinite; }
+
+/* ── Music player range ── */
+input[type='range'].player-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(200,168,233,0.2);
+  outline: none;
+  cursor: pointer;
+}
+input[type='range'].player-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #c8a8e9;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(200,168,233,0.6);
+}
+input[type='range'].player-range::-moz-range-thumb {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #c8a8e9;
+  cursor: pointer;
+  border: none;
 }

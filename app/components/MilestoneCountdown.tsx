@@ -3,155 +3,106 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-// CONFIGURABLE — update these dates
 const MILESTONES = [
-  {
-    label: 'kababa Birthday',
-    emoji: '🎂',
-    date: new Date('2026-11-04T00:00:00'), // Change to her actual birthday
-    color: 'from-violet-600/30 to-purple-800/30',
-    accent: '#c8a8e9',
-  },
-  {
-    label: 'Gummy bear Birthday',
-    emoji: '🎂',
-    date: new Date('2026-11-08T00:00:00'), // Change to her actual birthday
-    color: 'from-violet-600/30 to-purple-800/30',
-    accent: '#c8a8e9',
-  },
-  {
-    label: 'Our Next Date',
-    emoji: '🌹',
-    date: new Date('2025-08-01T00:00:00'), // Change to your next planned date
-    color: 'from-orange-600/30 to-red-800/30',
-    accent: '#f4845f',
-  },
-  {
-    label: 'Our Anniversary',
-    emoji: '💍',
-    date: new Date('2027-06-12T00:00:00'), // 1 year from when you became official
-    color: 'from-purple-600/30 to-violet-800/30',
-    accent: '#9b6dbd',
-  },
+  { label: "Kababa's Birthday",   date: new Date('2026-11-04T00:00:00'), accent: '#c8a8e9' },
+  { label: "Gummy Bear's Birthday", date: new Date('2026-11-08T00:00:00'), accent: '#f7b8c8' },
+  { label: 'Our Next Date',       date: new Date('2025-08-01T00:00:00'), accent: '#f4845f' },
+  { label: 'Our Anniversary',     date: new Date('2026-12-03T00:00:00'), accent: '#9b6dbd' },
 ]
 
 function useCountdown(target: Date) {
   const [diff, setDiff] = useState(0)
-
   useEffect(() => {
     const tick = () => setDiff(Math.max(0, target.getTime() - Date.now()))
     tick()
     const id = setInterval(tick, 1000)
     return () => clearInterval(id)
   }, [target])
-
-  const days    = Math.floor(diff / (1000 * 60 * 60 * 24))
-  const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-  const seconds = Math.floor((diff % (1000 * 60)) / 1000)
-  const isPast  = diff === 0
-
-  return { days, hours, minutes, seconds, isPast }
+  return {
+    days:    Math.floor(diff / 86400000),
+    hours:   Math.floor((diff % 86400000) / 3600000),
+    minutes: Math.floor((diff % 3600000) / 60000),
+    seconds: Math.floor((diff % 60000) / 1000),
+    isPast:  diff === 0,
+  }
 }
 
-function MilestoneCard({ milestone, index }: { milestone: typeof MILESTONES[0]; index: number }) {
-  const { days, hours, minutes, seconds, isPast } = useCountdown(milestone.date)
+function Card({ m, index }: { m: typeof MILESTONES[0]; index: number }) {
+  const { days, hours, minutes, seconds, isPast } = useCountdown(m.date)
+  const units = [{ v: days, l: 'Days' }, { v: hours, l: 'Hrs' }, { v: minutes, l: 'Min' }, { v: seconds, l: 'Sec' }]
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ scale: 1.03, y: -5 }}
-      className={`glass-card rounded-3xl p-6 relative overflow-hidden`}
-      style={{ boxShadow: `0 8px 40px rgba(0,0,0,0.3), 0 0 30px ${milestone.accent}20` }}
+      transition={{ delay: index * 0.12, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ y: -3 }}
+      className="border-card p-5 md:p-6 relative overflow-hidden"
     >
-      <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${milestone.color}`} />
       <div className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: `linear-gradient(90deg, transparent, ${milestone.accent}, transparent)` }} />
+        style={{ background: `linear-gradient(90deg, transparent, ${m.accent}60, transparent)` }} />
 
-      <div className="relative z-10">
-        <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-5">
-          <motion.span
-            animate={{ scale: [1, 1.15, 1], rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: index * 0.5 }}
-            className="text-4xl"
-          >
-            {milestone.emoji}
-          </motion.span>
-          <h3 className="text-purple-100 font-bold text-base md:text-xl"
-            style={{ fontFamily: "'Playfair Display', serif" }}>
-            {milestone.label}
-          </h3>
+      <p className="text-purple-400/50 text-[10px] tracking-[0.35em] uppercase mb-1 font-medium">{m.label}</p>
+      <p className="text-purple-500/40 text-xs mb-4">
+        {m.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+      </p>
+
+      {isPast ? (
+        <div className="text-center py-2">
+          <p className="text-2xl mb-1">🎉</p>
+          <p className="text-purple-200/70 text-sm font-medium">Today is the day!</p>
         </div>
-
-        {isPast ? (
-          <div className="text-center py-4">
-            <p className="text-2xl mb-2">🎉</p>
-            <p className="text-purple-200 font-medium">Today is the day!</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-4 gap-2">
-            {[
-              { v: days,    l: 'Days' },
-              { v: hours,   l: 'Hrs' },
-              { v: minutes, l: 'Min' },
-              { v: seconds, l: 'Sec' },
-            ].map(({ v, l }) => (
-              <div key={l} className="text-center">
-                <motion.div
-                  key={v}
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="text-2xl md:text-3xl font-bold tabular-nums leading-none mb-1"
-                  style={{ color: milestone.accent, fontFamily: "'Playfair Display', serif" }}
-                >
-                  {String(v).padStart(2, '0')}
-                </motion.div>
-                <p className="text-purple-400/70 text-xs tracking-wider uppercase">{l}</p>
-              </div>
-            ))}
-          </div>
-        )}
-
-        <p className="text-purple-400/50 text-xs mt-4 text-right">
-          {milestone.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-        </p>
-      </div>
+      ) : (
+        <div className="grid grid-cols-4 gap-2">
+          {units.map(({ v, l }) => (
+            <div key={l} className="text-center">
+              <motion.div
+                key={v}
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.22 }}
+                className="text-xl md:text-2xl font-bold tabular-nums leading-none mb-1"
+                style={{ color: m.accent, fontFamily: "'Playfair Display', serif" }}
+              >
+                {String(v).padStart(2, '0')}
+              </motion.div>
+              <p className="text-purple-500/40 text-[9px] tracking-wider uppercase">{l}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </motion.div>
   )
 }
 
 export default function MilestoneCountdown() {
   return (
-    <section className="py-24 section-dark relative overflow-hidden">
+    <section className="py-20 md:py-28 section-dark relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] opacity-8 blur-3xl"
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-64 opacity-[0.05] blur-3xl"
           style={{ background: 'radial-gradient(ellipse, #c8a8e9, transparent)' }} />
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 relative z-10">
+      <div className="max-w-5xl mx-auto px-5 relative z-10">
+        {/* Centered header */}
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
+          initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-14"
+          className="text-center mb-12 md:mb-16"
         >
-          <p className="text-purple-400 text-xs tracking-[0.35em] uppercase mb-3">✦ things to look forward to ✦</p>
-          <h2 className="text-3xl md:text-6xl font-bold gradient-text mb-4"
+          <p className="text-purple-500/60 text-[10px] tracking-[0.4em] uppercase mb-3 font-medium">things to look forward to</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             Next Milestones
           </h2>
-          <p className="text-purple-300/70 text-sm md:text-lg">Counting down to our special moments</p>
+          <p className="text-purple-400/50 text-sm mt-2">Counting down to our special moments</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
-          {MILESTONES.map((m, i) => (
-            <MilestoneCard key={m.label} milestone={m} index={i} />
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+          {MILESTONES.map((m, i) => <Card key={m.label} m={m} index={i} />)}
         </div>
       </div>
     </section>

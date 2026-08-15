@@ -17,51 +17,48 @@ import Surprise from './components/Surprise'
 import Future from './components/Future'
 import MilestoneCountdown from './components/MilestoneCountdown'
 import TimeGreeting from './components/TimeGreeting'
+import CatchMyHeart from './components/CatchMyHeart'
 
 type Stage = 'intro' | 'password' | 'main'
 
-const STARS = Array.from({ length: 100 }, (_, i) => ({
+const STARS = Array.from({ length: 80 }, (_, i) => ({
   id: i,
   x: Math.random() * 100,
   y: Math.random() * 100,
-  size: Math.random() * 2 + 0.4,
-  delay: Math.random() * 5,
-  duration: Math.random() * 4 + 2,
+  size: Math.random() * 1.8 + 0.4,
+  delay: Math.random() * 6,
+  dur: Math.random() * 4 + 2,
 }))
+
+function Divider() {
+  return <div className="section-divider" />
+}
 
 export default function Home() {
   const [stage, setStage] = useState<Stage>('intro')
-  const [isMusicPlaying, setIsMusicPlaying] = useState(false)
+  const [musicPlaying, setMusicPlaying] = useState(false)
   const [mounted, setMounted] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  useEffect(() => { setMounted(true) }, [])
 
-  const handleIntroDone = () => setStage('password')
   const handleUnlock = () => {
     setStage('main')
     setTimeout(() => {
       const audio = document.getElementById('bg-music') as HTMLAudioElement
-      if (audio) {
-        audio.play().catch(() => {})
-        setIsMusicPlaying(true)
-      }
+      if (audio) { audio.play().catch(() => {}); setMusicPlaying(true) }
     }, 800)
   }
 
   const toggleMusic = () => {
     const audio = document.getElementById('bg-music') as HTMLAudioElement
-    if (audio) {
-      if (isMusicPlaying) { audio.pause() }
-      else { audio.play().catch(() => {}) }
-      setIsMusicPlaying(!isMusicPlaying)
-    }
+    if (!audio) return
+    if (musicPlaying) { audio.pause() } else { audio.play().catch(() => {}) }
+    setMusicPlaying(!musicPlaying)
   }
 
   return (
-    <main className="min-h-screen" style={{ background: '#1a0533' }}>
+    <main className="min-h-screen" style={{ background: '#0e0120' }}>
       <audio
         id="bg-music"
         ref={audioRef}
@@ -69,36 +66,31 @@ export default function Home() {
         loop
       />
 
-      {/* Intro screen */}
       <AnimatePresence>
-        {stage === 'intro' && (
-          <IntroScreen onDone={handleIntroDone} />
-        )}
+        {stage === 'intro' && <IntroScreen onDone={() => setStage('password')} />}
       </AnimatePresence>
 
-      {/* Password gate */}
       <AnimatePresence>
         {stage === 'password' && (
           <motion.div
-            key="password"
+            key="pw"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0, scale: 1.05 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, scale: 1.04 }}
+            transition={{ duration: 0.7 }}
           >
             <PasswordGate onUnlock={handleUnlock} />
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Main content */}
       <AnimatePresence>
         {stage === 'main' && (
           <motion.div
             key="main"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, ease: 'easeOut' }}
+            transition={{ duration: 1, ease: 'easeOut' }}
           >
             {/* Global stars */}
             <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -106,61 +98,75 @@ export default function Home() {
                 <span key={s.id} className="star" style={{
                   left: `${s.x}%`, top: `${s.y}%`,
                   width: `${s.size}px`, height: `${s.size}px`,
-                  animationDelay: `${s.delay}s`, animationDuration: `${s.duration}s`,
+                  animationDelay: `${s.delay}s`, animationDuration: `${s.dur}s`,
                 }} />
               ))}
             </div>
 
-            {/* Time-aware greeting */}
             <TimeGreeting />
 
-            {/* Music toggle */}
+            {/* Music toggle — minimal */}
             <motion.button
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.2, type: 'spring' }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5 }}
               onClick={toggleMusic}
-              className="fixed top-4 right-4 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform"
+              className="fixed top-4 right-4 z-50 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-105"
               style={{
-                background: 'linear-gradient(135deg, #9b6dbd, #f4845f)',
-                boxShadow: '0 4px 20px rgba(155,109,189,0.5)'
+                background: 'rgba(255,255,255,0.06)',
+                border: '1px solid rgba(200,168,233,0.2)',
+                backdropFilter: 'blur(12px)',
               }}
+              title={musicPlaying ? 'Pause music' : 'Play music'}
             >
-              <span className="text-white text-xl">{isMusicPlaying ? '🔊' : '🔇'}</span>
+              <span className="text-purple-300/70 text-sm">{musicPlaying ? '♫' : '♪'}</span>
             </motion.button>
 
             <Hero />
+            <Divider />
             <Counter />
+            <Divider />
             <FirstPhotoReveal />
+            <Divider />
             <Timeline />
+            <Divider />
             <Gallery />
+            <Divider />
             <LoveLetter />
+            <Divider />
             <VideoSection />
+            <Divider />
             <MusicPlayer />
+            <Divider />
             <Reasons />
+            <Divider />
             <MilestoneCountdown />
+            <Divider />
+            <CatchMyHeart />
+            <Divider />
             <Surprise />
+            <Divider />
             <Future />
 
             {/* Footer */}
-            <footer className="py-12 relative overflow-hidden"
-              style={{ background: 'linear-gradient(180deg, #2d1054 0%, #1a0533 100%)' }}>
+            <footer className="py-14 relative overflow-hidden"
+              style={{ background: 'linear-gradient(180deg, #1a0533 0%, #0e0120 100%)' }}>
               <div className="absolute top-0 left-0 right-0 h-px"
-                style={{ background: 'linear-gradient(90deg, transparent, #c8a8e9, #f4845f, #c8a8e9, transparent)' }} />
-              <div className="text-center relative z-10">
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(200,168,233,0.25), rgba(244,132,95,0.2), transparent)' }} />
+              <div className="text-center">
                 <motion.div
-                  animate={{ scale: [1, 1.15, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="text-4xl mb-4"
+                  animate={{ scale: [1, 1.12, 1] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+                  className="text-2xl mb-4 inline-block"
                 >
                   💜
                 </motion.div>
-                <p className="text-purple-200 text-lg font-medium mb-2"
-                  style={{ fontFamily: "'Dancing Script', cursive", fontSize: '1.4rem' }}>
-                  Made with every bit of love ❤️ I have😘
+                <p className="text-purple-300/50 mb-1"
+                  style={{ fontFamily: "'Dancing Script', cursive", fontSize: '1.3rem' }}>
+                  Made with every bit of love I have
                 </p>
-                <p className="text-purple-400/60 text-sm tracking-wider">
-                  — collins, forever yours 🌹
+                <p className="text-purple-500/30 text-xs tracking-[0.3em] uppercase">
+                  — collins, forever yours
                 </p>
               </div>
             </footer>

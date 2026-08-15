@@ -2,136 +2,121 @@
 
 import { motion } from 'framer-motion'
 
-interface TimelineItem {
-  id: number
-  date: string
-  title: string
-  description: string
-  emoji: string
-}
-
-const timelineData: TimelineItem[] = [
+const timelineData = [
   {
     id: 1,
     date: 'Nov 30, 2025',
     title: 'How We Met',
-    description: 'Ile siku tulimeet love  🥹 I wasn’t interested at first but vile tulikaanisha with u at bazaar plaza talk alittle bit .. i was impressed and started seeing you as a different person u were kind , honest, funny still vibe daamn😂 i still remember vibing the ariel thing 😂😂💔 and now i was interested the walk to uhuru part and back u just proved me that u were that gem i was looking for years🥹🥲 ',
-    emoji: '✨'
+    description: "Ile siku tulimeet love 🥹 I wasn't interested at first but vile tulikaanisha with u at bazaar plaza talk alittle bit.. i was impressed and started seeing you as a different person. You were kind, honest, funny — still vibe daamn 😂 I still remember vibing the ariel thing 😂💔 and now i was interested. The walk to uhuru part and back — you just proved me that you were that gem i was looking for years 🥹",
+    label: 'The beginning'
   },
   {
     id: 2,
     date: 'Dec 01, 2025',
     title: 'First Conversation',
-    description: 'It was beautiful and amazing 🤩 i remember straggling how to dm you on instagram I swear it wasn’t easy😩😂 but kwani mi hudoo nikajipea nguvu and sent my first hi☺️ the flow , the vibe 😍 u were giving me made me even to really want to know you better my love 😍',
-    emoji: '💬'
+    description: "It was beautiful and amazing 🤩 I remember struggling how to dm you on instagram — I swear it wasn't easy 😩😂 but kwani mi hudoo nikajipea nguvu and sent my first hi ☺️ The flow, the vibe you were giving me made me even more want to know you better my love 😍",
+    label: 'First words'
   },
   {
     id: 3,
     date: 'Dec 03, 2025',
     title: 'We Became Official',
-    description: 'Best moment of my life 🥹  it was fast but worth it 😍 waited for it for so long (3days) but looked centuries to me🤭thats how excited and eager  to be with you baby🥹',
-    emoji: '💍'
+    description: "Best moment of my life 🥹 It was fast but worth it 😍 Waited for it for so long (3 days) but it looked like centuries to me 🤭 That's how excited and eager I was to be with you baby 🥹",
+    label: 'Official'
   },
   {
     id: 4,
-    date: 'MM/DATE/YEAR',
+    date: 'Coming soon',
     title: 'First Date',
-    description: 'Coming soon my love 🥰',
-    emoji: '🌅'
+    description: "Coming soon my love 🥰 I'm already planning something special for us...",
+    label: 'Next chapter'
   },
   {
     id: 5,
-    date: 'Throughout Our Journey',
+    date: 'Throughout our journey',
     title: 'Special Memories',
-    description: 'The little laughs 🤭 late talks 🌝 the ludo and snake game😂 even though i am waaaaay stronger than you 🤭 …every second with you is a special moment 🤞🏽😍🥰 and promise to create more memories together love 😍',
-    emoji: '📸'
+    description: "The little laughs 🤭 late talks 🌝 the ludo and snake game 😂 even though i am waaaaay stronger than you 🤭 — every second with you is a special moment 🤞🏽😍 and I promise to create more memories together love 😍",
+    label: 'Memories'
   },
   {
     id: 6,
-    date: 'Now & Always',
+    date: 'Now & always',
     title: 'Challenges We Overcame',
-    description: 'We have faced a lot in this journey of ours 🥹 arguments,fight and alot more even came a point we ended things but fate brought us back together baby 🤭 and i know or hope we are ready not to fall again but to stand and face our challenges together 🤞🏽❤️ love is  stronger if both parties value and trust each other 🫂 and i promise you jo matter what happens or occur that make you feel like i dont trust you just know that i trust you with all my heart 💜 and if i had another life in another multiverse i would still choose you my khabajia🤭❤️❤️',
-    emoji: '💪'
-  }
+    description: "We have faced a lot in this journey 🥹 arguments, fights and a lot more — even came a point we ended things but fate brought us back together baby 🤭 And I know we are ready not to fall again but to stand and face our challenges together 🤞🏽❤️ I promise you no matter what happens, I trust you with all my heart 💜 And if I had another life in another multiverse I would still choose you my khabajia 🤭❤️",
+    label: 'Stronger together'
+  },
 ]
 
 export default function Timeline() {
   return (
-    <section className="section-gradient py-24 relative overflow-hidden">
-      {/* Ambient glow */}
+    <section className="section-gradient py-20 md:py-28 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-0 w-64 h-96 opacity-10 blur-3xl"
+        <div className="absolute top-1/3 left-0 w-48 h-96 opacity-[0.06] blur-3xl"
           style={{ background: 'radial-gradient(circle, #c8a8e9, transparent)' }} />
-        <div className="absolute top-1/3 right-0 w-64 h-96 opacity-10 blur-3xl"
+        <div className="absolute bottom-1/3 right-0 w-48 h-96 opacity-[0.06] blur-3xl"
           style={{ background: 'radial-gradient(circle, #f4845f, transparent)' }} />
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 relative z-10">
+      <div className="max-w-4xl mx-auto px-5 relative z-10">
+        {/* Centered header */}
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
+          initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-20"
+          className="text-center mb-16 md:mb-20"
         >
-          <p className="text-purple-400 text-xs tracking-[0.35em] uppercase mb-3">✦ our beautiful journey ✦</p>
-          <h2 className="text-3xl md:text-6xl font-bold gradient-text mb-4"
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold gradient-text mb-3"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             Our Love Story
           </h2>
-          <p className="text-purple-300/70 text-base md:text-lg">Written in the stars, lived in our hearts</p>
+          <p className="text-purple-400/50 text-sm md:text-base">Written in the stars, lived in our hearts</p>
         </motion.div>
 
         {/* Timeline line */}
         <div className="timeline-line hidden md:block" />
 
-        <div className="space-y-14">
+        <div className="space-y-10 md:space-y-14">
           {timelineData.map((item, index) => (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60 }}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.8, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.75, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
               className={`relative flex items-start md:justify-${index % 2 === 0 ? 'start' : 'end'}`}
             >
-              {/* Glowing dot */}
+              {/* Dot */}
               <motion.div
-                whileInView={{ scale: [0, 1.3, 1] }}
+                whileInView={{ scale: [0, 1.2, 1] }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.08 + 0.3 }}
-                className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center text-lg md:text-2xl z-10 shadow-2xl flex-shrink-0"
+                transition={{ duration: 0.45, delay: index * 0.07 + 0.25 }}
+                className="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-9 h-9 md:w-11 md:h-11 rounded-full z-10 flex-shrink-0 flex items-center justify-center"
                 style={{
                   background: 'linear-gradient(135deg, #9b6dbd, #f4845f)',
-                  boxShadow: '0 0 20px rgba(200,168,233,0.6), 0 0 40px rgba(200,168,233,0.2)',
-                  top: '8px'
+                  boxShadow: '0 0 16px rgba(200,168,233,0.5)',
+                  top: '6px'
                 }}
               >
-                {item.emoji}
+                <div className="w-2.5 h-2.5 rounded-full bg-white/80" />
               </motion.div>
 
               {/* Card */}
-              <div className={`ml-14 md:ml-0 md:w-[44%] ${index % 2 === 0 ? 'md:mr-auto md:pr-14' : 'md:ml-auto md:pl-14'}`}>
-                <motion.div
-                  whileHover={{ scale: 1.01, y: -2 }}
-                  transition={{ duration: 0.3 }}
-                  className="glass-card-light rounded-2xl md:rounded-3xl p-4 md:p-6 relative overflow-hidden"
-                >
-                  {/* Top accent */}
-                  <div className="absolute top-0 left-0 right-0 h-1 rounded-t-3xl"
+              <div className={`ml-12 md:ml-0 md:w-[45%] ${index % 2 === 0 ? 'md:mr-auto md:pr-12' : 'md:ml-auto md:pl-12'}`}>
+                <div className="glass-card-light rounded-2xl p-4 md:p-6 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl"
                     style={{ background: 'linear-gradient(90deg, #9b6dbd, #f4845f)' }} />
-
-                  <span className="text-orange-500 font-semibold text-xs tracking-wider uppercase">
-                    {item.date}
-                  </span>
-                  <h3 className="text-base md:text-xl font-bold text-violet-800 mt-2 mb-2"
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-[10px] tracking-[0.3em] uppercase font-semibold"
+                      style={{ color: '#f4845f' }}>{item.date}</span>
+                    <span className="text-[10px] text-purple-400/50 tracking-wider">· {item.label}</span>
+                  </div>
+                  <h3 className="text-base md:text-lg font-bold text-violet-900 mb-2"
                     style={{ fontFamily: "'Playfair Display', serif" }}>
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed text-sm">
-                    {item.description}
-                  </p>
-                </motion.div>
+                  <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+                </div>
               </div>
             </motion.div>
           ))}
