@@ -102,7 +102,7 @@ export default function Timeline() {
               </motion.div>
 
               {/* Card */}
-              <div className={`ml-11 md:ml-0 md:w-[45%] ${index % 2 === 0 ? 'md:mr-auto md:pr-12' : 'md:ml-auto md:pl-12'}`}>
+              <div className={`ml-12 md:ml-0 md:w-[45%] ${index % 2 === 0 ? 'md:mr-auto md:pr-12' : 'md:ml-auto md:pl-12'}`}>
                 <div className="glass-card-light rounded-2xl p-4 md:p-6 relative overflow-hidden">
                   <div className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl"
                     style={{ background: 'linear-gradient(90deg, #9b6dbd, #f4845f)' }} />

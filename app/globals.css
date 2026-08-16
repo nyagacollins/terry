@@ -14,32 +14,41 @@
 
 * { box-sizing: border-box; padding: 0; margin: 0; }
 
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
+  overflow-x: clip;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   font-family: 'Quicksand', sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
   overflow-y: auto;
+  overscroll-behavior-y: contain;
   -webkit-text-size-adjust: 100%;
   background: #0e0120;
-  /* Prevent iOS bounce from blocking scroll */
-  position: relative;
-  min-height: 100vh;
+  min-height: 100%;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 /* ── Mobile section spacing ── */
 @media (max-width: 640px) {
   section {
-    padding-top: 3.5rem !important;
-    padding-bottom: 3.5rem !important;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
-  /* Ensure nothing clips scroll */
-  section, div {
-    -webkit-overflow-scrolling: touch;
+  /* Ensure full-width on mobile */
+  .max-w-4xl,
+  .max-w-5xl,
+  .max-w-6xl {
+    width: 100%;
   }
 }
 
@@ -148,14 +157,21 @@ body {
   }
 }
 
-/* On mobile: disable expensive blur/backdrop effects */
+/* Promote key animated layers to GPU composite */
+.petal,
+.star {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* On mobile: disable expensive animations & blur effects */
 @media (max-width: 768px) {
   .morph-bg {
     background: #120228;
     animation: none;
   }
   .orb-drift {
-    animation: none;
+    display: none;
   }
   .float-anim {
     animation: none;
@@ -170,6 +186,34 @@ body {
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+  /* Disable backdrop-filter on mobile — major perf killer */
+  .glass-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(18, 2, 40, 0.92);
+  }
+  .glass-card-light {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .lightbox-overlay {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  /* Reduce star count via opacity — heavy twinkle on 40+ stars kills FPS */
+  .star {
+    animation: none;
+    opacity: 0.25;
+  }
+  /* Disable number-flip animation on mobile */
+  .number-flip {
+    animation: none;
+  }
+  /* Simpler btn animation */
+  .btn-love {
+    animation: none;
+    background: linear-gradient(135deg, #9b6dbd, #c8a8e9, #f4845f);
+  }
 }
 
 /* ── Star twinkle ── */
@@ -178,11 +222,12 @@ body {
   50%       { opacity: 0.9;  transform: scale(1.3); }
 }
 .star {
-  position: fixed;
+  position: absolute;
   border-radius: 50%;
   background: white;
   pointer-events: none;
   animation: twinkle ease-in-out infinite;
+  will-change: opacity;
 }
 
 /* ── Glass card — used sparingly ── */

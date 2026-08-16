@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, LazyMotion, domAnimation } from 'framer-motion'
 import IntroScreen from './components/IntroScreen'
 import PasswordGate from './components/PasswordGate'
 import Hero from './components/Hero'
@@ -21,7 +21,11 @@ import CatchMyHeart from './components/CatchMyHeart'
 
 type Stage = 'intro' | 'password' | 'main'
 
-const STARS = Array.from({ length: 80 }, (_, i) => ({
+// Fewer stars on mobile for performance
+const isMobileUA = typeof navigator !== 'undefined' && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+const STAR_COUNT = isMobileUA ? 15 : 40
+
+const STARS = Array.from({ length: STAR_COUNT }, (_, i) => ({
   id: i,
   x: Math.random() * 100,
   y: Math.random() * 100,
@@ -58,7 +62,8 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen relative" style={{ background: '#0e0120' }}>
+    <LazyMotion features={domAnimation}>
+    <main className="min-h-screen" style={{ background: '#0e0120' }}>
       <audio
         id="bg-music"
         ref={audioRef}
@@ -113,9 +118,8 @@ export default function Home() {
               onClick={toggleMusic}
               className="fixed top-4 right-4 z-50 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-105"
               style={{
-                background: 'rgba(255,255,255,0.06)',
+                background: 'rgba(30,10,60,0.85)',
                 border: '1px solid rgba(200,168,233,0.2)',
-                backdropFilter: 'blur(12px)',
               }}
               title={musicPlaying ? 'Pause music' : 'Play music'}
             >
@@ -174,5 +178,6 @@ export default function Home() {
         )}
       </AnimatePresence>
     </main>
+    </LazyMotion>
   )
 }

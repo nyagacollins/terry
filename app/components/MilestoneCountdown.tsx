@@ -7,7 +7,7 @@ const MILESTONES = [
   { label: "Kababa's Birthday",   date: new Date('2026-11-04T00:00:00'), accent: '#c8a8e9' },
   { label: "Gummy Bear's Birthday", date: new Date('2026-11-08T00:00:00'), accent: '#f7b8c8' },
   { label: 'Our Next Date',       date: new Date('2025-08-01T00:00:00'), accent: '#f4845f' },
-  { label: 'Our Anniversary',     date: new Date('2026-12-03T00:00:00'), accent: '#9b6dbd' },
+  { label: 'Our Anniversary',     date: new Date('2027-06-14T00:00:00'), accent: '#9b6dbd' },
 ]
 
 function useCountdown(target: Date) {

@@ -41,7 +41,8 @@ export default function IntroScreen({ onDone }: { onDone: () => void }) {
   const [sparkles, setSparkles] = useState<{ id: number; x: number; y: number; delay: number }[]>([])
 
   useEffect(() => {
-    setStars(Array.from({ length: 70 }, (_, i) => ({
+    const isMobile = window.innerWidth < 768
+    setStars(Array.from({ length: isMobile ? 8 : 20 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -49,7 +50,7 @@ export default function IntroScreen({ onDone }: { onDone: () => void }) {
       delay: Math.random() * 5,
       dur: Math.random() * 3 + 2,
     })))
-    setSparkles(Array.from({ length: 12 }, (_, i) => ({
+    setSparkles(Array.from({ length: isMobile ? 5 : 12 }, (_, i) => ({
       id: i,
       x: 30 + Math.random() * 40,
       y: 15 + Math.random() * 70,
@@ -95,11 +96,13 @@ export default function IntroScreen({ onDone }: { onDone: () => void }) {
             }} />
           ))}
 
-          {/* Ambient orbs */}
+          {/* Ambient orbs — desktop only */}
+          <div className="hidden md:block">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-[0.08] blur-[100px] pointer-events-none"
             style={{ background: 'radial-gradient(circle, #f7b8c8, transparent)' }} />
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full opacity-[0.07] blur-[80px] pointer-events-none"
             style={{ background: 'radial-gradient(circle, #c8a8e9, transparent)' }} />
+          </div>
 
           {/* Main container */}
           <div className="relative w-full max-w-sm mx-auto flex flex-col items-center px-6" style={{ minHeight: '380px' }}>
@@ -109,15 +112,12 @@ export default function IntroScreen({ onDone }: { onDone: () => void }) {
               {FLOWERS.map(([emoji, x, y, size, delay], i) => (
                 <motion.span
                   key={i}
-                  initial={{ opacity: 0, scale: 0, y: 30 }}
+                  initial={{ opacity: 0, scale: 0, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   transition={{
                     delay: delay as number,
-                    duration: 0.6,
+                    duration: 0.5,
                     ease: [0.16, 1, 0.3, 1],
-                    type: 'spring',
-                    stiffness: 180,
-                    damping: 14,
                   }}
                   className="absolute select-none"
                   style={{

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Confetti from 'react-confetti'
 
@@ -14,6 +14,11 @@ const surprises = [
 export default function Surprise() {
   const [revealed, setRevealed] = useState(false)
   const [confetti, setConfetti] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768)
+  }, [])
 
   const reveal = () => {
     setRevealed(true)
@@ -25,7 +30,7 @@ export default function Surprise() {
     <section className="py-20 md:py-28 section-mid relative overflow-hidden">
       {confetti && (
         <Confetti
-          numberOfPieces={220}
+          numberOfPieces={isMobile ? 80 : 220}
           recycle={false}
           gravity={0.16}
           colors={['#c8a8e9', '#9b6dbd', '#f4845f', '#e05c5c', '#f7b8c8', '#ffffff']}

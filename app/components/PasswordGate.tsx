@@ -15,7 +15,8 @@ export default function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    setStars(Array.from({ length: 55 }, (_, i) => ({
+    const isMobile = window.innerWidth < 768
+    setStars(Array.from({ length: isMobile ? 8 : 20 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -64,7 +65,12 @@ export default function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
         <motion.div
           animate={shake ? { x: [-8, 8, -6, 6, -3, 3, 0] } : {}}
           transition={{ duration: 0.45 }}
-          className="glass-card rounded-3xl p-7 md:p-10"
+          className="rounded-3xl p-7 md:p-10 relative"
+          style={{
+            background: 'rgba(18, 2, 40, 0.95)',
+            border: '1px solid rgba(200,168,233,0.15)',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+          }}
         >
           {/* Top line */}
           <div className="absolute top-0 left-10 right-10 h-px"

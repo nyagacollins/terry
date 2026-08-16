@@ -11,7 +11,8 @@ export default function Hero() {
   const [stars, setStars] = useState<{ id: number; x: number; y: number; size: number; delay: number; dur: number }[]>([])
 
   useEffect(() => {
-    setStars(Array.from({ length: 60 }, (_, i) => ({
+    const isMobile = window.innerWidth < 768
+    setStars(Array.from({ length: isMobile ? 10 : 25 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,

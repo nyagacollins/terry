@@ -58,6 +58,8 @@ export default function VideoSection() {
             className="w-full aspect-video bg-black"
             onEnded={() => { setPlaying(false); setStarted(false) }}
             playsInline
+            webkit-playsinline="true"
+            preload="metadata"
           >
             <source src="/video/WhatsApp Video 2026-03-19 at 03.47.17.mp4" type="video/mp4" />
           </video>

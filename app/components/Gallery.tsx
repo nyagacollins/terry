@@ -89,7 +89,9 @@ export default function Gallery() {
                   src={photo.src}
                   alt={photo.caption}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ background: 'linear-gradient(to top, rgba(14,1,32,0.85) 0%, transparent 55%)' }}>
