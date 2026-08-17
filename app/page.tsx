@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { AnimatePresence, motion, LazyMotion, domAnimation } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import IntroScreen from './components/IntroScreen'
 import PasswordGate from './components/PasswordGate'
 import Hero from './components/Hero'
@@ -62,7 +62,6 @@ export default function Home() {
   }
 
   return (
-    <LazyMotion features={domAnimation}>
     <main className="min-h-screen" style={{ background: '#0e0120' }}>
       <audio
         id="bg-music"
@@ -178,6 +177,5 @@ export default function Home() {
         )}
       </AnimatePresence>
     </main>
-    </LazyMotion>
   )
 }

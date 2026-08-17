@@ -14,11 +14,7 @@
 
 * { box-sizing: border-box; padding: 0; margin: 0; }
 
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
+html, body { width: 100%; height: 100%; }
 
 html {
   scroll-behavior: smooth;
@@ -36,20 +32,6 @@ body {
   min-height: 100%;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
-}
-
-/* ── Mobile section spacing ── */
-@media (max-width: 640px) {
-  section {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-  /* Ensure full-width on mobile */
-  .max-w-4xl,
-  .max-w-5xl,
-  .max-w-6xl {
-    width: 100%;
-  }
 }
 
 /* ── Scrollbar ── */
@@ -147,73 +129,8 @@ body {
   animation: petal-fall linear infinite;
   z-index: 1;
   will-change: transform;
-}
-
-/* ── Reduce motion & mobile perf ── */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Promote key animated layers to GPU composite */
-.petal,
-.star {
   transform: translateZ(0);
   backface-visibility: hidden;
-}
-
-/* On mobile: disable expensive animations & blur effects */
-@media (max-width: 768px) {
-  .morph-bg {
-    background: #120228;
-    animation: none;
-  }
-  .orb-drift {
-    display: none;
-  }
-  .float-anim {
-    animation: none;
-  }
-  .glow-card {
-    animation: none;
-  }
-  .shimmer-text {
-    animation: none;
-    background: linear-gradient(135deg, #c8a8e9 0%, #ffffff 50%, #f4845f 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  /* Disable backdrop-filter on mobile — major perf killer */
-  .glass-card {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    background: rgba(18, 2, 40, 0.92);
-  }
-  .glass-card-light {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-  .lightbox-overlay {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-  /* Reduce star count via opacity — heavy twinkle on 40+ stars kills FPS */
-  .star {
-    animation: none;
-    opacity: 0.25;
-  }
-  /* Disable number-flip animation on mobile */
-  .number-flip {
-    animation: none;
-  }
-  /* Simpler btn animation */
-  .btn-love {
-    animation: none;
-    background: linear-gradient(135deg, #9b6dbd, #c8a8e9, #f4845f);
-  }
 }
 
 /* ── Star twinkle ── */
@@ -228,9 +145,11 @@ body {
   pointer-events: none;
   animation: twinkle ease-in-out infinite;
   will-change: opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
-/* ── Glass card — used sparingly ── */
+/* ── Glass card ── */
 .glass-card {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(12px);
@@ -250,7 +169,7 @@ body {
   }
 }
 
-/* ── Bordered card — modern alternative to glass ── */
+/* ── Bordered card ── */
 .border-card {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(200, 168, 233, 0.12);
@@ -268,16 +187,14 @@ body {
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #9b6dbd, #c8a8e9, #f4845f);
-  background-size: 200% 200%;
   color: white;
   padding: 13px 32px;
   border-radius: 50px;
   font-weight: 700;
   font-size: 0.95rem;
   letter-spacing: 0.3px;
-  transition: all 0.35s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 24px rgba(155, 109, 189, 0.45);
-  animation: morph-bg 5s ease infinite;
   cursor: pointer;
   border: none;
   outline: none;
@@ -296,7 +213,7 @@ body {
   background: linear-gradient(180deg, #1a0533 0%, #2d1054 40%, #1f0a3d 100%);
 }
 
-/* ── Divider line ── */
+/* ── Divider ── */
 .section-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(200,168,233,0.3), rgba(244,132,95,0.3), transparent);
@@ -376,4 +293,69 @@ input[type='range'].player-range::-moz-range-thumb {
   background: #c8a8e9;
   cursor: pointer;
   border: none;
+}
+
+/* ── Reduce motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Mobile performance ── */
+@media (max-width: 768px) {
+  /* Kill expensive background animations */
+  .morph-bg {
+    background: #120228;
+    animation: none;
+  }
+  .shimmer-text {
+    animation: none;
+    background: linear-gradient(135deg, #c8a8e9 0%, #ffffff 50%, #f4845f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .heartbeat { animation: none; }
+  .float-anim { animation: none; }
+  .glow-card { animation: none; }
+  .orb-drift { display: none; }
+  .petal { display: none; }
+  .number-flip { animation: none; }
+
+  /* Freeze stars — DOM nodes stay but no animation cost */
+  .star {
+    animation: none;
+    opacity: 0.2;
+  }
+
+  /* Kill backdrop-filter — #1 iOS scroll killer */
+  .glass-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(18, 2, 40, 0.92);
+  }
+  .glass-card-light {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .lightbox-overlay {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  /* Reduce letter-spacing — wide tracking overflows small screens */
+  .tracking-\[0\.4em\],
+  .tracking-\[0\.45em\],
+  .tracking-\[0\.35em\],
+  .tracking-\[0\.3em\] {
+    letter-spacing: 0.12em;
+  }
+
+  /* Full width containers */
+  .max-w-4xl, .max-w-5xl, .max-w-6xl { width: 100%; }
+
+  /* Section padding */
+  section { padding-top: 3rem; padding-bottom: 3rem; }
 }

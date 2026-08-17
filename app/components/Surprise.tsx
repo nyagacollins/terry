@@ -40,11 +40,11 @@ export default function Surprise() {
       <div className="max-w-4xl mx-auto px-5 relative z-10">
         {/* Right-aligned header */}
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-right mb-12 md:mb-16"
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-12 md:mb-16"
         >
           <p className="text-purple-500/60 text-[10px] tracking-[0.4em] uppercase mb-3 font-medium">just for you</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text"

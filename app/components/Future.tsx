@@ -14,7 +14,7 @@ const promises = [
 export default function Future() {
   return (
     <section className="py-20 md:py-28 section-gradient relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none hidden md:block">
         <div className="absolute top-0 right-0 w-64 h-64 opacity-[0.06] blur-3xl"
           style={{ background: 'radial-gradient(circle, #f4845f, transparent)' }} />
         <div className="absolute bottom-0 left-0 w-64 h-64 opacity-[0.06] blur-3xl"

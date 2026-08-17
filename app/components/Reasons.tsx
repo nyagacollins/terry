@@ -34,7 +34,7 @@ export default function Reasons() {
 
   return (
     <section className="py-20 md:py-28 section-dark relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none hidden md:block">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-48 opacity-[0.06] blur-3xl"
           style={{ background: 'radial-gradient(ellipse, #c8a8e9, transparent)' }} />
       </div>
@@ -42,10 +42,10 @@ export default function Reasons() {
       <div className="max-w-5xl mx-auto px-5 relative z-10">
         {/* Left-aligned header */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="mb-12 md:mb-16"
         >
           <p className="text-purple-500/60 text-[10px] tracking-[0.4em] uppercase mb-3 font-medium">let me count the ways</p>

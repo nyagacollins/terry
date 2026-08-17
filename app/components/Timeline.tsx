@@ -50,7 +50,7 @@ const timelineData = [
 export default function Timeline() {
   return (
     <section className="section-gradient py-20 md:py-28 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none hidden md:block">
         <div className="absolute top-1/3 left-0 w-48 h-96 opacity-[0.06] blur-3xl"
           style={{ background: 'radial-gradient(circle, #c8a8e9, transparent)' }} />
         <div className="absolute bottom-1/3 right-0 w-48 h-96 opacity-[0.06] blur-3xl"
@@ -60,11 +60,11 @@ export default function Timeline() {
       <div className="max-w-4xl mx-auto px-5 relative z-10">
         {/* Centered header */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-16 md:mb-20"
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-12 md:mb-20"
         >
           <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold gradient-text mb-3"
             style={{ fontFamily: "'Playfair Display', serif" }}>

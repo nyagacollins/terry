@@ -46,7 +46,7 @@ export default function MusicPlayer() {
           <div className="flex justify-center mb-6">
             <motion.div
               animate={{ rotate: playing ? 360 : 0 }}
-              transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+              transition={playing ? { duration: 8, repeat: Infinity, ease: 'linear' } : { duration: 0.5 }}
               className="w-28 h-28 md:w-36 md:h-36 rounded-full relative overflow-hidden"
               style={{
                 background: 'conic-gradient(from 0deg, #2a1050, #3d1a6e, #1a0533, #2a1050)',
@@ -66,14 +66,14 @@ export default function MusicPlayer() {
           <div className="text-center mb-6">
             <h3 className="text-purple-100 font-bold text-lg mb-1"
               style={{ fontFamily: "'Playfair Display', serif" }}>
-              Chai ya saa kumi
+              Birds of a Feather
             </h3>
-            <p className="text-purple-400/50 text-sm">Ywaya Tajiri</p>
+            <p className="text-purple-400/50 text-sm">Billie Eilish</p>
           </div>
 
           <audio
             ref={audioRef}
-            src="/music/CHAI YA SAA KUMI ( OFFICIAL VIDEO ) -YWAYA TAJIRI - Ywaya Tajiri.mp3"
+            src="/music/Billie Eilish - BIRDS OF A FEATHER (Official Music Video) - BillieEilishVEVO.mp3"
             onTimeUpdate={() => setCurrent(audioRef.current?.currentTime ?? 0)}
             onLoadedMetadata={() => setDuration(audioRef.current?.duration ?? 0)}
             onEnded={() => setPlaying(false)}

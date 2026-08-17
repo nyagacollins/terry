@@ -78,7 +78,7 @@ function Card({ m, index }: { m: typeof MILESTONES[0]; index: number }) {
 export default function MilestoneCountdown() {
   return (
     <section className="py-20 md:py-28 section-dark relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none hidden md:block">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-64 opacity-[0.05] blur-3xl"
           style={{ background: 'radial-gradient(ellipse, #c8a8e9, transparent)' }} />
       </div>

@@ -14,7 +14,7 @@ export default function FirstPhotoReveal() {
 
   return (
     <section className="py-20 md:py-28 section-gradient relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none hidden md:block">
         <div className="absolute top-0 right-0 w-72 h-72 opacity-[0.06] blur-3xl"
           style={{ background: 'radial-gradient(circle, #c8a8e9, transparent)' }} />
         <div className="absolute bottom-0 left-0 w-64 h-64 opacity-[0.06] blur-3xl"
@@ -24,11 +24,11 @@ export default function FirstPhotoReveal() {
       <div className="max-w-2xl mx-auto px-5 relative z-10">
         {/* Right-aligned header */}
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-right mb-12"
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-12"
         >
           <p className="text-purple-500/60 text-[10px] tracking-[0.4em] uppercase mb-3 font-medium">where it all began</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text"

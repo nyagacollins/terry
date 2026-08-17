@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 // ── CONFIG ────────────────────────────────────────────────
-const HER_NAME = 'Hope'
+const HER_NAME = 'baby'
 
 const LEVELS = [
   { speed: 1.6, interval: 1700, need: 8,  bombs: 0, label: 'Easy'         },
@@ -50,7 +50,7 @@ interface Particle {
   color: string; size: number
 }
 
-type GameState = 'idle' | 'playing' | 'levelup' | 'gameover' | 'win'
+type GameState = 'idle' | 'playing' | 'paused' | 'levelup' | 'gameover' | 'win'
 
 let uid = 0
 
@@ -347,6 +347,38 @@ export default function CatchMyHeart() {
     drawFrame()
     rafRef.current = requestAnimationFrame(loop)
   }, [drawFrame])
+  // ── Pause / Resume ───────────────────────────────────────
+  const pauseGame = useCallback(() => {
+    cancelAnimationFrame(rafRef.current)
+    clearInterval(spawnRef.current)
+    stateRef.current = 'paused'
+    setScreen('paused')
+  }, [])
+
+  const resumeGame = useCallback(() => {
+    stateRef.current = 'playing'
+    setScreen('playing')
+    rafRef.current = requestAnimationFrame(loop)
+    spawnRef.current = setInterval(spawnItem, LEVELS[levelRef.current].interval)
+  }, [loop, spawnItem])
+
+  const quitGame = useCallback(() => {
+    cancelAnimationFrame(rafRef.current)
+    clearInterval(spawnRef.current)
+    itemsRef.current = []
+    particlesRef.current = []
+    slowRef.current = false
+    setSlowActive(false)
+    const canvas = canvasRef.current
+    if (canvas) {
+      const ctx = canvas.getContext('2d')
+      ctx?.clearRect(0, 0, W.current, H.current)
+    }
+    stateRef.current = 'idle'
+    setScreen('idle')
+    setUiScore(0); setUiLives(3); setUiCaught(0)
+    setUiLevel(0); setUiNeed(LEVELS[0].need); setUiCombo('')
+  }, [])
 
   // ── Start game ───────────────────────────────────────────
   const startGame = useCallback(() => {
@@ -462,10 +494,20 @@ export default function CatchMyHeart() {
                   <div className="text-purple-400/50 text-[8px] tracking-widest uppercase">Lv {uiLevel + 1}</div>
                   <div className="text-purple-200/70 text-[10px] font-semibold">{cfg.label}</div>
                 </div>
-                <div className="text-right">
-                  <div className="text-purple-400/50 text-[8px] tracking-widest uppercase">Score</div>
-                  <div className="text-purple-200/85 text-sm font-bold">{uiScore}</div>
-                  {bestScore > 0 && <div className="text-yellow-400/50 text-[7px]">best {bestScore}</div>}
+                <div className="flex items-center gap-2">
+                  <div className="text-right">
+                    <div className="text-purple-400/50 text-[8px] tracking-widest uppercase">Score</div>
+                    <div className="text-purple-200/85 text-sm font-bold">{uiScore}</div>
+                    {bestScore > 0 && <div className="text-yellow-400/50 text-[7px]">best {bestScore}</div>}
+                  </div>
+                  {/* Pause button */}
+                  <button
+                    onClick={pauseGame}
+                    className="pointer-events-auto w-7 h-7 rounded-full flex items-center justify-center text-white/60 hover:text-white/90 transition-colors"
+                    style={{ background: 'rgba(200,168,233,0.1)', border: '1px solid rgba(200,168,233,0.15)' }}
+                  >
+                    <span style={{ fontSize: '10px' }}>⏸</span>
+                  </button>
                 </div>
               </div>
 
@@ -591,6 +633,44 @@ export default function CatchMyHeart() {
             )}
           </AnimatePresence>
 
+          {/* ── PAUSED ── */}
+          <AnimatePresence>
+            {screen === 'paused' && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center z-20"
+                style={{ background: 'rgba(8,1,18,0.93)' }}
+              >
+                <div style={{ fontSize: '40px' }} className="mb-4">⏸</div>
+                <h3 className="text-white text-xl font-bold mb-1"
+                  style={{ fontFamily: "'Playfair Display', serif" }}>
+                  Paused
+                </h3>
+                <p className="text-purple-300/50 text-xs mb-7">Score: <span className="text-purple-100 font-bold">{uiScore}</span> · Level {uiLevel + 1}</p>
+                <div className="flex flex-col gap-3 w-full max-w-[180px]">
+                  <motion.button
+                    onClick={resumeGame}
+                    className="btn-love py-3 w-full"
+                    whileTap={{ scale: 0.96 }}
+                  >
+                    Resume ▶
+                  </motion.button>
+                  <motion.button
+                    onClick={quitGame}
+                    className="py-3 w-full rounded-full text-purple-400/70 text-sm font-semibold transition-colors hover:text-purple-200"
+                    style={{ background: 'rgba(200,168,233,0.08)', border: '1px solid rgba(200,168,233,0.15)' }}
+                    whileTap={{ scale: 0.96 }}
+                  >
+                    Quit Game
+                  </motion.button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* ── GAME OVER ── */}
           <AnimatePresence>
             {screen === 'gameover' && (
@@ -625,6 +705,12 @@ export default function CatchMyHeart() {
                 >
                   Try Again 💕
                 </motion.button>
+                <button
+                  onClick={quitGame}
+                  className="mt-3 text-purple-400/50 text-xs hover:text-purple-300/70 transition-colors"
+                >
+                  Quit Game
+                </button>
               </motion.div>
             )}
           </AnimatePresence>
@@ -678,6 +764,12 @@ export default function CatchMyHeart() {
                 >
                   Play Again 💕
                 </motion.button>
+                <button
+                  onClick={quitGame}
+                  className="mt-3 text-purple-400/50 text-xs hover:text-purple-300/70 transition-colors relative z-10"
+                >
+                  Quit Game
+                </button>
               </motion.div>
             )}
           </AnimatePresence>
