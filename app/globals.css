@@ -358,4 +358,16 @@ input[type='range'].player-range::-moz-range-thumb {
 
   /* Section padding */
   section { padding-top: 3rem; padding-bottom: 3rem; }
+
+  /* Clamp all section headings so they never overflow */
+  section h2 {
+    font-size: clamp(1.5rem, 7vw, 1.875rem) !important;
+    line-height: 1.15;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  section h1 {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
 }
