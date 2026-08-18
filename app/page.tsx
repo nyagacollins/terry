@@ -18,6 +18,7 @@ import Future from './components/Future'
 import MilestoneCountdown from './components/MilestoneCountdown'
 import TimeGreeting from './components/TimeGreeting'
 import CatchMyHeart from './components/CatchMyHeart'
+import GameSpace from './components/GameSpace'
 
 type Stage = 'intro' | 'password' | 'main'
 
@@ -150,6 +151,10 @@ export default function Home() {
             <Surprise />
             <Divider />
             <Future />
+
+            {/* Fun Zone / Games */}
+            <Divider />
+            <GameSpace />
 
             {/* Footer */}
             <footer className="py-14 relative overflow-hidden"
