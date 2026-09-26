@@ -5,6 +5,16 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
 const photos = [
+  { id: 'a',  src: '/images/WhatsApp Image 2026-09-26 at 12.15.02.jpeg',    caption: 'Our first photo together' },
+    { id: 'b',  src: '/images/WhatsApp Image 2026-09-26 at 12.15.03 (2).jpeg',    caption: 'Our first photo together' },
+     { id: 'c',  src: '/images/WhatsApp Image 2026-09-26 at 12.15.04 (1).jpeg',    caption: 'Our first photo together' },
+      { id: 'd',  src: '/images/WhatsApp Image 2026-09-26 at 12.15.04 (3).jpeg',    caption: 'Our first photo together' },
+      { id: 'e',  src: '/images/WhatsApp Image 2026-09-26 at 12.15.05.jpeg',    caption: 'Our first photo together' },
+{ id: 'f',  src: '/images/WhatsApp Image 2026-09-26 at 12.15.05 (1).jpeg',    caption: 'Our first photo together' },
+{ id: 'g',  src: '/images/WhatsApp Image 2026-09-26 at 12.15.05 (2).jpeg',    caption: 'Our first photo together' },
+{ id: 'h',  src: '/images/WhatsApp Image 2026-09-26 at 12.15.05 (3).jpeg',    caption: 'Our first photo together' },
+{ id: 'i',  src: '/images/WhatsApp Image 2026-09-26 at 12.15.08 (2).jpeg',    caption: 'Our first photo together' },
+
   { id: 1,  src: '/images/WhatsApp Image 2026-06-19 at 23.33.54.jpeg',    caption: 'Our first photo together' },
   { id: 2,  src: '/images/WhatsApp Image 2026-06-19 at 23.39.55.jpeg',    caption: 'Date night vibes' },
   { id: 3,  src: '/images/WhatsApp Image 2026-06-30 at 23.15.10.jpeg',    caption: 'Adventures together' },

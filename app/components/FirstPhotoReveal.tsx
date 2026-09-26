@@ -4,9 +4,9 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 
-const FIRST_PHOTO = '/images/WhatsApp Image 2026-06-19 at 23.33.54.jpeg'
+const FIRST_PHOTO = '/images/WhatsApp Image 2026-09-26 at 12.15.03 (1).jpeg'
 const HER_NAME = 'Hope Wangari'
-const FIRST_DATE = 'February 9, 2025'
+const FIRST_DATE = 'September 24, 2026'
 
 export default function FirstPhotoReveal() {
   const [revealed, setRevealed] = useState(false)
